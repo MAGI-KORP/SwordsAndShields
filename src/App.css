@@ -4,6 +4,7 @@
   text-align: center;
   min-height:100vh;
   background-color: black;
+  color:white
 }
 
 /* .App-logo {
@@ -44,6 +45,20 @@
   text-decoration: none;
   color: white;
   font-family: 'Inconsolata', monospace;
+  text-align:left;
+}
+
+.nav-link-creation:hover {
+  text-decoration: none;
+  color: white;
+  font-family: 'Inconsolata', monospace;
+}
+
+.nav-link-creation {
+  text-decoration: none;
+  color: white;
+  font-family: 'Inconsolata', monospace;
+  text-align:left;
 }
 
 .pyramid {

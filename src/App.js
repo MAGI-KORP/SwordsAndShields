@@ -24,9 +24,9 @@ class App extends Component {
       <header className="App-header">
       
           <nav className="navbar">
-            <row>
-              <div class="col-4">
-                <Link class = "nav-link" to = "/character">
+            <div>
+              <div>
+                <Link className="nav-link" to = "/character">
                     <Typed 
                         strings={['[Character]']} 
                         typeSpeed={40} 
@@ -36,8 +36,8 @@ class App extends Component {
                 </Link>
               </div>
 
-              <div class="col-4">
-                <Link class = "nav-link" to = "/arena">
+              <div>
+                <Link className = "nav-link" to = "/arena">
                 <Typed 
                         strings={['[Arena]']} 
                         typeSpeed={40}
@@ -47,8 +47,8 @@ class App extends Component {
                 </Link>
               </div>
 
-              <div class="col-4">
-                <Link class = "nav-link" to = "/rankings">
+              <div>
+                <Link className = "nav-link" to = "/rankings">
                 <Typed 
                         strings={['[Rankings]']} 
                         typeSpeed={40}
@@ -57,7 +57,7 @@ class App extends Component {
                     />
                 </Link>
               </div>
-            </row>
+            </div>
           </nav>
           
         </header>
