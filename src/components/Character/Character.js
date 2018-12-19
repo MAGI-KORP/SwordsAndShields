@@ -19,7 +19,7 @@ class Character extends Component {
                 <div className="row">
                     <div className="col-6">
                         <div>
-                            <h1><Typed strings={["[Character]"]} typeSpeed={50} showCursor={false} /></h1>
+                            <h1><Typed strings={["[Character]"]} typeSpeed={30} showCursor={false} /></h1>
                             <h2 className="characterKey">
                                 <Typed strings={["Name: "]} typeSpeed={30} startDelay={1000} showCursor={false}></Typed>
                                 <span id="characterValue"> <Typed strings={[this.state.name]} typeSpeed={30} startDelay={3000} showCursor={false}></Typed></span>
@@ -38,7 +38,7 @@ class Character extends Component {
                             <br/>
 
                             <h2 className="characterKey">
-                                <Typed strings={["Strength: "]} typeSpeed={30} startDelay={2000} showCursor={false}></Typed>
+                                <Typed strings={["Strength: "]} typeSpeed={25} startDelay={2000} showCursor={false}></Typed>
                                 <span id="characterValue"> <Typed strings={[this.state.stats.strength]} typeSpeed={50} startDelay={5000} showCursor={false}></Typed></span>
                             </h2>
 
