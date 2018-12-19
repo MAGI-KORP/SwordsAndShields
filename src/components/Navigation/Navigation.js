@@ -13,7 +13,7 @@ class Navigation extends Component {
                                 strings={['[Character]']} 
                                 typeSpeed={75} 
                                 showCursor={false}
-                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 15000}
+                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 16200}
                             />
                         </Link>
                     </div>
@@ -24,7 +24,7 @@ class Navigation extends Component {
                                 strings={['[Arena]']} 
                                 typeSpeed={75}
                                 showCursor={false} 
-                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 16000}
+                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 17200}
                             />
                         </Link>
                     </div>
@@ -35,7 +35,7 @@ class Navigation extends Component {
                                 strings={['[Rankings]']} 
                                 typeSpeed={75}
                                 showCursor={false} 
-                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 17000}
+                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 18200}
                             />
                         </Link>
                     </div>
