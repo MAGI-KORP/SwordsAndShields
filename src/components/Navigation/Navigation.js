@@ -13,29 +13,29 @@ class Navigation extends Component {
                         strings={['[Character]']} 
                         typeSpeed={40} 
                         showCursor={false}
-                        startDelay={this.props.location !== "http://localhost:3000/" ? 0 : 15000}
+                        startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 15000}
                     />
                 </Link>
               </div>
 
               <div>
                 <Link className = "nav-link" to = "/arena">
-                <Typed 
+                    <Typed 
                         strings={['[Arena]']} 
                         typeSpeed={40}
                         showCursor={false} 
-                        startDelay={this.props.location !== "http://localhost:3000/" ? 0 : 16000}
+                        startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 16000}
                     />
                 </Link>
               </div>
 
               <div>
                 <Link className = "nav-link" to = "/rankings">
-                <Typed 
+                    <Typed 
                         strings={['[Rankings]']} 
                         typeSpeed={40}
                         showCursor={false} 
-                        startDelay={this.props.location !== "http://localhost:3000/" ? 0 : 17000}
+                        startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 17000}
                     />
                 </Link>
               </div>
