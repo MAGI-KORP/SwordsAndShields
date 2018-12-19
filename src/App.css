@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata');
+html{
+  overflow:hidden
+}
 
 .App {
   text-align: center;
   min-height:100vh;
   background-color: black;
-  color:white
+  color:white;
 }
 
 /* .App-logo {
@@ -34,6 +37,16 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.characterKey {
+  text-align: left;
+  padding-left: 4vw;
+  width:100%
+}
+
+#characterValue {
+  text-align:center;
 }
 
 .main {
@@ -79,7 +92,7 @@
 }
 
 .lilPyramid {
-  margin: .5vh auto 3vh auto;
+  margin: 0;
   animation-name: lilPyramid;
   animation-direction: alternate;
   animation-iteration-count: infinite;
