@@ -24,7 +24,7 @@ class Home extends Component {
                     showCursor={false} 
                 />
           </h2>
-          <Link className="nav-link-creation" to='/character'>
+          <Link className="nav-link-creation" to='/creation'>
             <Typed 
                     strings={['[Create A Character]']} 
                     typeSpeed={75}
