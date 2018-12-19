@@ -4,6 +4,7 @@
   text-align: center;
   min-height:100vh;
   background-color: black;
+  color:white
 }
 
 /* .App-logo {
@@ -20,6 +21,15 @@
   font-size: calc(10px + 2vmin);
   color: white;
   top:0
+}
+
+.App-Main {
+  margin-top: 1vh;
+  height: 70vh
+}
+
+.App-Footer {
+  height:10vh
 }
 
 .App-link {
@@ -44,11 +54,33 @@
   text-decoration: none;
   color: white;
   font-family: 'Inconsolata', monospace;
+  text-align:left;
 }
 
-.pyramid {
+.nav-link-creation:hover {
+  text-decoration: none;
+  color: white;
+  font-family: 'Inconsolata', monospace;
+}
+
+.nav-link-creation {
+  text-decoration: none;
+  color: white;
+  font-family: 'Inconsolata', monospace;
+  text-align:left;
+}
+
+.Pyramid {
   margin: .5vh auto 3vh auto;
-  animation-name: pyramid;
+  animation-name: Pyramid;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-duration: 5s;
+}
+
+.lilPyramid {
+  margin: .5vh auto 3vh auto;
+  animation-name: lilPyramid;
   animation-direction: alternate;
   animation-iteration-count: infinite;
   animation-duration: 5s;
@@ -59,7 +91,7 @@
   font-size:6rem
 }
 
-@keyframes pyramid {
+@keyframes Pyramid {
   from {
     opacity:1
   }
@@ -68,6 +100,18 @@
   }
   to {
     opacity: 0;
+  }
+}
+
+@keyframes lilPyramid {
+  from {
+    opacity:0
+  }
+  to {
+    opacity:.5
+  }
+  to {
+    opacity: 1;
   }
 }
 

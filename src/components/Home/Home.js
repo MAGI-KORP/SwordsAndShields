@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import pyramid from '../../images/pyramid.png'
+import pyramid from '../../images/Pyramid.png'
 import Typed from 'react-typed';
+import { Link } from 'react-router-dom'
 
 class Home extends Component {
     render(){
         return (
-            <div class = "main">
+        <div>
           <h1 className="title">
                 <Typed 
                     strings={["Swords and Shields"]} 
@@ -14,23 +15,23 @@ class Home extends Component {
                     showCursor={true} 
                 />
                 </h1>
-          <img src={pyramid} className = 'pyramid' alt = 'pyramid'></img>
-          <h2 class = "message">
+          <img src={pyramid} className = 'Pyramid' alt = 'pyramid'></img>
+          <h2 className = "message">
                 <Typed 
-                    strings={['Welcome Traveler, it is time to begin your journey!']} 
+                    strings={["Welcome Traveler! The time has come to begin your journey..."]} 
                     typeSpeed={75}
                     startDelay={6000}
                     showCursor={false} 
                 />
           </h2>
-          <a class = "nav-link" href=".">
+          <Link className="nav-link-creation" to='/creation'>
             <Typed 
                     strings={['[Create A Character]']} 
                     typeSpeed={75}
-                    showCursor={false} 
                     startDelay={12000}
+                    showCursor={false}
             />
-          </a>
+          </Link>
         </div>
         )
     }
