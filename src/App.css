@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+.App {
+  text-align: center;
+  min-height:100vh;
+  background-color: black;
+}
+
+/* .App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+} */
+
+.App-header {
+  height: 20vh;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  top:0
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.main {
+  margin-top: 1vh;
+}
+
+.message {
+  color: white
+}
+
+.nav-link:hover {
+  text-decoration: none;
+  color: white;
+  font-family: 'Inconsolata', monospace;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-family: 'Inconsolata', monospace;
+}
+
+.pyramid {
+  margin: .5vh auto 3vh auto;
+  animation-name: pyramid;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-duration: 5s;
+}
+
+.title {
+  color:white;
+  font-size:6rem
+}
+
+@keyframes pyramid {
+  from {
+    opacity:1
+  }
+  to {
+    opacity:.5
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
