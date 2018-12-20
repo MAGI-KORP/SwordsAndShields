@@ -84,7 +84,7 @@ class Character extends Component {
                             </h2>
                             <br/>
                             <h2 className="characterKey">
-                                <Typed strings={["Damage Dealt: "]} typeSpeed={25} startDelay={8500} showCursor={false}></Typed>
+                                <Typed strings={["Damage Dealt: "]} typeSpeed={30} startDelay={8500} showCursor={false}></Typed>
                                 <span id="characterValue"> <Typed strings={[this.state.stats.damageDealt]} typeSpeed={30} startDelay={11000} showCursor={false}></Typed></span>
                             </h2>
                             <h2 className="characterKey">
