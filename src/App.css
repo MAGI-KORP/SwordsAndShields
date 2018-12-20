@@ -114,10 +114,17 @@ html{
 
 .lilPyramid {
   margin: 0;
-  animation-name: lilPyramid;
-  animation-direction: alternate;
+  animation-name: Pyramid;
+  animation-direction: alternate-reverse;
   animation-iteration-count: infinite;
   animation-duration: 5s;
+}
+
+.lilPyramid:hover {
+  animation-name: nav-link;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-duration: 500ms;
 }
 
 .title {
@@ -137,17 +144,6 @@ html{
   }
 }
 
-@keyframes lilPyramid {
-  from {
-    opacity:0
-  }
-  to {
-    opacity:.5
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 @keyframes nav-link {
   from {
