@@ -17,19 +17,19 @@ html{
 } */
 
 .App-header {
-  height: 20vh;
+  height: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 3vmin);
   color: white;
-  top:0
+  top:0;
 }
 
 .App-Main {
   margin-top: 1vh;
-  height: 70vh
+  height: 75vh
 }
 
 .App-Footer {
