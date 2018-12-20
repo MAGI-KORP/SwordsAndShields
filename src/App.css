@@ -73,6 +73,10 @@ html{
   text-decoration: none;
   color: white;
   font-family: 'Inconsolata', monospace;
+  animation-name: nav-link;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-duration: 500ms;
 }
 
 .nav-link {
@@ -87,6 +91,10 @@ html{
   text-decoration: none;
   color: white;
   font-family: 'Inconsolata', monospace;
+  animation-name: nav-link;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-duration: 500ms;
 }
 
 .nav-link-creation {
@@ -138,6 +146,15 @@ html{
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes nav-link {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0
   }
 }
 
