@@ -8,6 +8,7 @@ html{
   min-height:100vh;
   background-color: black;
   color:white;
+  font-size: calc(10px + 2vmin);
 }
 
 /* .App-logo {
@@ -17,7 +18,7 @@ html{
 
 .App-header {
   height: 20vh;
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -39,22 +40,33 @@ html{
   color: #61dafb;
 }
 
+.characterHeader {
+  font-size: calc(10px + 2vmin);
+}
+
 .characterKey {
   text-align: left;
   padding-left: 4vw;
-  width:100%
+  width:100%;
+  font-size: calc(10px + 2vmin);
+
 }
 
 #characterValue {
   text-align:center;
+  font-size: calc(10px + 2vmin);
+
 }
 
 .main {
   margin-top: 1vh;
+  font-size: calc(10px + 2vmin);
+
 }
 
 .message {
-  color: white
+  color: white;
+  font-size: calc(10px + 2vmin);
 }
 
 .nav-link:hover {
@@ -67,7 +79,8 @@ html{
   text-decoration: none;
   color: white;
   font-family: 'Inconsolata', monospace;
-  text-align:left;
+  text-align:center;
+  display: inline
 }
 
 .nav-link-creation:hover {

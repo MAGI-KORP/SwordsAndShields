@@ -6,8 +6,8 @@ class Navigation extends Component {
     render(){
         return (
             <nav className="navbar">
-                <div>
-                    <div>
+                <div className="row">
+                    <div className="col-12">
                         <Link className="nav-link" to = "/character">
                             <Typed 
                                 strings={['[Character]']} 
@@ -16,9 +16,7 @@ class Navigation extends Component {
                                 startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 16200}
                             />
                         </Link>
-                    </div>
 
-                    <div>
                         <Link className = "nav-link" to = "/arena">
                             <Typed 
                                 strings={['[Arena]']} 
@@ -27,9 +25,7 @@ class Navigation extends Component {
                                 startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 17200}
                             />
                         </Link>
-                    </div>
 
-                    <div>
                         <Link className = "nav-link" to = "/rankings">
                             <Typed 
                                 strings={['[Rankings]']} 
