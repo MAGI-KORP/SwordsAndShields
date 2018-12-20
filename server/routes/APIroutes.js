@@ -3,12 +3,14 @@ const router = express.Router()
 
 const connection = require("../connection/connection.js")
 
-router.get("/api", (req, res) => {
-    connection.query("SELECT * FROM characters", (err, result) => {
+router.get("/api/:id", (req, res) => {
+    connection.query("SELECT id, name FROM characters WHERE ?", {
+        id: req.params.id
+     }, (err, result) => {
         if (err) throw err
 
         res.json(result)
     })
-}) 
+})
 
 module.exports = router
