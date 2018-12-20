@@ -55,7 +55,34 @@ html{
 #characterValue {
   text-align:center;
   font-size: calc(10px + 2vmin);
+}
 
+.class {
+  padding:0
+}
+
+.creationForm {
+  height: 50vh
+}
+
+.characterSelect {
+  width: 100%;
+  text-align: center;
+  border-radius: .25rem
+}
+
+.form {
+  width: 100%;
+  padding:0
+}
+
+.formLabel {
+  padding-right:1vw
+}
+
+.form-row{
+  width:100%;
+  padding: 0
 }
 
 .main {
@@ -143,7 +170,6 @@ html{
     opacity: 0;
   }
 }
-
 
 @keyframes nav-link {
   from {
