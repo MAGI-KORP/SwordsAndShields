@@ -25,7 +25,7 @@ class Home extends Component {
                     showCursor={false} 
                 />
           </h2>
-          <Link className="nav-link-creation" to='/creation'>
+          <Link className="nav-link-creation" to='/registration'>
             <Typed 
                     strings={['[Create An Account]']} 
                     typeSpeed={75}
