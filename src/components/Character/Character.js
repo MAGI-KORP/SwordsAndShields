@@ -19,7 +19,6 @@ class Character extends Component {
             damageDealt: "232,456",
             damageTaken: "-1"
         },
-
         backstory: "Behold, Colin the Cat-Lord, a simple and wayward peasant turned hero after saving his village from bandits! Colin is always accompanied by his two cats, Luca and Zoey, both are known to be quite formidable adversaries in their own right."
     }
     render() {
