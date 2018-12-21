@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Pyramid from '../../images/pyramid.png'
+import Pyramid from '../../images/Pyramid.png'
 import Typed from 'react-typed';
 import { Link } from 'react-router-dom'
 
