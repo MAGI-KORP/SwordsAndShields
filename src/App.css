@@ -76,6 +76,10 @@ html{
   padding:0
 }
 
+.form-control {
+  background-color: black;
+}
+
 .formLabel {
   padding-right:1vw
 }
@@ -139,8 +143,12 @@ html{
   animation-duration: 5s;
 }
 
+textarea {
+  background-color: black;
+}
+
 .lilPyramid {
-  margin: 0;
+  margin: 0 0 1vh 0;
   animation-name: Pyramid;
   animation-direction: alternate-reverse;
   animation-iteration-count: infinite;
