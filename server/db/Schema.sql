@@ -7,7 +7,7 @@ CREATE TABLE characters (
     attack INT,
     defense INT,
     hp INT,
-    taunt VARCHAR(500)
+    taunt VARCHAR(500),
     PRIMARY KEY(id)
 );
 

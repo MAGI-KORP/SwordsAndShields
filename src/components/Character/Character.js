@@ -13,7 +13,6 @@ class Character extends Component {
         .then(res => res.json())
         .then(characters => this.setState({name: characters[0].name}, () => {
             console.log("Characters received..", characters)
-            console.log(this.state)
         }))
     }
 
