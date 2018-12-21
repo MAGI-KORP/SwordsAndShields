@@ -55,7 +55,38 @@ html{
 #characterValue {
   text-align:center;
   font-size: calc(10px + 2vmin);
+}
 
+.class {
+  padding:0
+}
+
+.creationForm {
+  height: 50vh
+}
+
+.characterSelect {
+  width: 100%;
+  text-align: center;
+  border-radius: .25rem
+}
+
+.form {
+  width: 100%;
+  padding:0
+}
+
+.form-control {
+  background-color: black;
+}
+
+.formLabel {
+  padding-right:1vw
+}
+
+.form-row{
+  width:100%;
+  padding: 0
 }
 
 .main {
@@ -112,8 +143,12 @@ html{
   animation-duration: 5s;
 }
 
+textarea {
+  background-color: black;
+}
+
 .lilPyramid {
-  margin: 0;
+  margin: 0 0 1vh 0;
   animation-name: Pyramid;
   animation-direction: alternate-reverse;
   animation-iteration-count: infinite;
@@ -143,7 +178,6 @@ html{
     opacity: 0;
   }
 }
-
 
 @keyframes nav-link {
   from {
