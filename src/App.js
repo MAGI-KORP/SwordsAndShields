@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation/Navigation'
 import Home from './components/Home/Home'
-import Creation from './components/Creation/Creation'
+import Registration from './components/Registration/Registration'
 import Character from './components/Character/Character'
 import Arena from './components/Arena/Arena'
 import Rankings from './components/Rankings/Rankings'
@@ -24,7 +24,7 @@ class App extends Component {
           
           <div className="App-Main">
             <Route exact path = "/" component = {Home} />
-            <Route path = "/creation" component = {Creation} />
+            <Route path = "/registration" component = {Registration} />
             <Route path = "/character" component = {Character} />
             <Route path = "/arena" component = {Arena} />
             <Route path = "/rankings" component = {Rankings} />
