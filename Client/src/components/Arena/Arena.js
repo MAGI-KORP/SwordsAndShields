@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import Typed from 'react-typed';
+const io = require('socket.io-client')
+const socket = io()  
 
 class Arena extends Component {
     state = {
+        response: false,
+        endpoint: "http://127.0.0.1:4001",
         one: {
             name: "Colin the Cat-Lord",
             level: "5",
@@ -41,6 +44,12 @@ class Arena extends Component {
         }
     }
 
+    
+    makeMove(choice) {
+        console.log("Button Clicked")
+        socket.emit("choice", choice)
+    }
+
     render() {
         return (
             <div>
@@ -52,12 +61,11 @@ class Arena extends Component {
                         <h2>Backstory: <br/>
                             <span>{this.state.one.backstory}</span>
                         </h2>
+                        <button onClick={this.makeMove("Attack")}>Attack</button>
                     </div>
                     <div className="col-4">
                         <h1 className="combatDisplayHeader">Combat Log</h1>
-                        <p>{this.state.one.name} attacks and {this.state.two.name} attempts to evade. </p>
-                        <p>{this.state.two.name} fails to evade and takes the hit for {this.state.one.attributes.strength * 2} damage.</p>
-                        <p>{this.state.two.name} dies from blood loss.</p>
+                        <p>{this.state.response}</p>
                     </div>
                     <div className="col-4">
                         <h1 className="combatDisplayHeader">{this.state.two.name}</h1>
@@ -72,15 +80,10 @@ class Arena extends Component {
             
         )
     }
+
+    componentDidMount() {      
+        socket.on("response", data => this.setState({ response: data }));
+    }
 }
 
 export default Arena
-
-            // <h1>
-            //     <Typed 
-            //         strings={["This is the Arena! Or Arena Lobby!"]} 
-            //         typeSpeed={100}
-            //         startDelay={0}
-            //         showCursor={true} 
-            //     />
-            // </h1>

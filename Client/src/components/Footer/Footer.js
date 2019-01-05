@@ -6,7 +6,7 @@ class Footer extends Component {
     render() {
         return (
                 <div className="row">
-                    <div class="col-12">
+                    <div className="col-12">
                         <Link to="/">
                             <img style={{display: window.location.href === "http://localhost:3000/" ? "none" : ""}}className="lilPyramid" src={lilPyramid} alt="lilPyramid"></img>
                         </Link>                       

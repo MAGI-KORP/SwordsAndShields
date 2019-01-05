@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Typed from 'react-typed';
+
 
 class Registration extends Component {
     render() {
