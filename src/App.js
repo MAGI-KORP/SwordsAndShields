@@ -10,9 +10,9 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 
 class App extends Component {
   
-  state = {
-    location: window.location.href
-  };
+  // state = {
+  //   location: window.location.href
+  // };
 
   render() {
     return (
