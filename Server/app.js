@@ -9,24 +9,43 @@ app.use(index);
 const server = http.createServer(app);
 const io = socketIo(server);
 
-const choice1 = "";
-const choice2 = "";
+let log = [];
+let playerOne = {};
+let playerTwo = {};
+let players = []
+
+function initialize(socket) {
+  players.push(socket)
+  socket.emit("initialize", (players.length))
+}
+
+function issuePlayerSlot(socket, index){
+  socket.emit("initialize", (index + 1))
+}
+
+function disconnect(socket) {
+  var index = players.indexOf(socket)
+  players.splice(index, 1)
+  console.log(players.length)
+  players.map(issuePlayerSlot)
+}
 
 io.on("connection", socket => {
   console.log("New client connected")
-  socket.on("choice", choice => {
-      console.log(choice)
-
-    // if (!choice1) {
-    //     choice1 = choice
-    // }
-    // else{
-    //     choice2 = choice
-    // }
-
-    socket.emit("response", `You choose to ${choice}`)
-  },
-  socket.on("disconnect", () => console.log("Client disconnected"));
+  initialize(socket)
+  
+  // socket.on("choice", function(player, choice) {
+  //   log.push(player + " chose to " + choice)
+  //   io.emit("response", log)
+  // })
+  socket.on("disconnect", function() {
+    console.log("Client disconnected")
+    disconnect(socket)
+  });
 });
+
+io.on("choice", socket => {
+  
+})
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

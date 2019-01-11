@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-const io = require('socket.io-client')
-const socket = io()  
+import socketIOClient from "socket.io-client";
+// const io = require('socket.io-client')
+// const socket = io()  
 
 class Arena extends Component {
     state = {
-        response: false,
+        message: "",
+        slot: 0,
+        log:[],
         endpoint: "http://127.0.0.1:4001",
+        socket: false,
         one: {
             name: "Colin the Cat-Lord",
             level: "5",
@@ -45,10 +49,25 @@ class Arena extends Component {
     }
 
     
-    makeMove(choice) {
-        console.log("Button Clicked")
-        socket.emit("choice", choice)
+    makeMove(player, choice) { 
+        console.log(choice)   
+        this.state.socket.emit("choice", player,choice)
     }
+
+    log(line) {
+        return <p id="logElement">{line}</p>
+    }
+
+    displayLog() {
+        return this.state.log.map(this.log)
+    }
+
+    setSlot(num) {
+        var slot = Number(num)
+        this.setState({slot: slot})
+        console.log("Player Slot: " + this.state.slot)
+    }
+
 
     render() {
         return (
@@ -61,11 +80,22 @@ class Arena extends Component {
                         <h2>Backstory: <br/>
                             <span>{this.state.one.backstory}</span>
                         </h2>
-                        <button onClick={this.makeMove("Attack")}>Attack</button>
+                        <div style={(this.state.slot === 1) ? {display: "show"} : {display: "none"}} className="row">
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 1", "Attack")}}>Attack</button>
+                            </div>
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 1", "Defend")}}>Defend</button>
+                            </div>
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 1", "Evade")}}>Evade</button>
+                            </div>
+                        </div>                                                           
                     </div>
                     <div className="col-4">
                         <h1 className="combatDisplayHeader">Combat Log</h1>
-                        <p>{this.state.response}</p>
+                        {/* <p>{this.state.response}</p> */}
+                        <p id="log">{this.displayLog()}</p>
                     </div>
                     <div className="col-4">
                         <h1 className="combatDisplayHeader">{this.state.two.name}</h1>
@@ -74,6 +104,17 @@ class Arena extends Component {
                         <h2>Backstory: <br/>
                             <span>{this.state.two.backstory}</span>
                         </h2>
+                        <div style={(this.state.slot === 2) ? {display: "show"} : {display: "none"}} className="row">
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 2", "Attack")}}>Attack</button>
+                            </div>
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 2", "Defend")}}>Defend</button>
+                            </div>
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 2", "Evade")}}>Evade</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,8 +122,14 @@ class Arena extends Component {
         )
     }
 
-    componentDidMount() {      
-        socket.on("response", data => this.setState({ response: data }));
+    componentDidMount() {
+        const { endpoint } = this.state;
+        const socket = socketIOClient(endpoint);
+        this.setState({socket : socket})
+        if(!this.state.slot){
+            socket.on("initialize", num => this.setSlot(num))
+        }     
+        socket.on("response", data => this.setState({log: data}));
     }
 }
 
