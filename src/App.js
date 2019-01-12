@@ -8,6 +8,7 @@ import Arena from './components/Arena/Arena'
 import Rankings from './components/Rankings/Rankings'
 import Footer from './components/Footer/Footer'
 import { BrowserRouter as Router, Route} from "react-router-dom";
+import axios from "axios"
 
 class App extends Component {
   constructor() {
@@ -17,11 +18,38 @@ class App extends Component {
       username: null
     }
   
+    this.getUser = this.getUser.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
     this.updateUser = this.updateUser.bind(this)
+  }
+
+  componentDidMount() {
+    this.getUser()
   }
 
   updateUser = (userObject) => {
     this.setState(userObject)
+  }
+
+  getUser = () => {
+    axios.get('/user/').then(response => {
+      console.log('Get user response: ')
+      console.log(response.data)
+      if (response.data.user) {
+        console.log('Get User: There is a user saved in the server session: ')
+
+        this.setState({
+          loggedIn: true,
+          username: response.data.user.username
+        })
+      } else {
+        console.log('Get user: no user');
+        this.setState({
+          loggedIn: false,
+          username: null
+        })
+      }
+    })
   }
 
 
@@ -36,8 +64,9 @@ class App extends Component {
           
           <div className="App-Main">
             <Route exact path = "/" component = {Home} />
-            <Route path = "/registration" component = {Registration} />
-            <Route path = "/login" render={() => 
+            <Route path = "/registration" render ={() => 
+              <Registration />} />
+            <Route path = "/user/login" render={() => 
               <Login updateUser={this.updateUser} />
               } />
             <Route path = "/character" component = {Character} />

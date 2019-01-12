@@ -47,6 +47,25 @@ router.post("/", (req, res) => {
     
 })
 
+router.get('/', (req, res, next) => {
+    console.log('===== user!!======')
+    console.log(req.user)
+    if (req.user) {
+        res.json({ user: req.user })
+    } else {
+        res.json({ user: null })
+    }
+})
+
+router.post('/logout', (req, res) => {
+    if (req.user) {
+        req.logout()
+        res.send({ msg: 'logging out' })
+    } else {
+        res.send({ msg: 'no user to log out' })
+    }
+})
+
 passport.serializeUser((user_id, done) => {
     done(null, user_id);
   });

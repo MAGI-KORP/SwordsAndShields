@@ -24,14 +24,13 @@ class Login extends Component {
         event.preventDefault()
         console.log("handleSubmit")
 
-        axios.post("/login", {
+        axios.post("/user/login", {
             username: this.state.username,
             password: this.state.password
         })
         .then(response => {
             console.log("login response: ")
             console.log(response)
-            console.log(this.props.updateUser())
             if (response.status === 200) {
                 this.props.updateUser({
                     loggedIn: true,

@@ -80,8 +80,8 @@ const PORT = process.env.PORT || 8080
 
 // app.use(API)
 // app.use(htmlRoutes)
-app.use("/", htmlRoutes)
-app.use("/login", htmlRoutes)
+app.use("/user", htmlRoutes)
+// app.use("/login", htmlRoutes)
 
 app.listen(PORT, () => {
     console.log(`App is listening on PORT ${PORT}`)
