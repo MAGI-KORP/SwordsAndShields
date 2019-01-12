@@ -1,0 +1,21 @@
+[   {   "name":     "Xena, Warrior Princess",
+        "wins":     15,
+        "losses":   3
+    },
+    {   "name":     "Hercules of the Legendary Journeys",
+        "wins":     17,
+        "losses":   10
+    },
+    {   "name":     "Beowulf",
+        "wins":     16,
+        "losses":   11
+    },
+    {   "name":     "Herman Munster",
+        "wins":     10,
+        "losses":   11
+    },
+    {   "name":     "Al Bundy",
+        "wins":     2,
+        "losses":   11
+    }
+]
