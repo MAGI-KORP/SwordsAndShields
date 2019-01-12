@@ -29,11 +29,11 @@ html{
 
 .App-Main {
   margin-top: 1vh;
-  height: 75vh
+  height: 70vh
 }
 
 .App-Footer {
-  height:10vh
+  height:15vh
 }
 
 .App-link {
@@ -69,6 +69,23 @@ html{
   width: 100%;
   text-align: center;
   border-radius: .25rem
+}
+
+.combatDisplayHeader{
+  text-align:center;
+  border-bottom: white dotted 3px;
+  padding-bottom: 1vh
+}
+
+.combatantDisplay{
+  height:55vh;
+  text-align:left;
+  padding: auto 2vw auto 2vw;
+  margin:0
+}
+
+.combatLog{
+  height:15vh
 }
 
 .form {
@@ -148,7 +165,6 @@ textarea {
 }
 
 .lilPyramid {
-  margin: 0 0 1vh 0;
   animation-name: Pyramid;
   animation-direction: alternate-reverse;
   animation-iteration-count: infinite;
@@ -165,6 +181,10 @@ textarea {
 .title {
   color:white;
   font-size:6rem
+}
+
+span {
+  font-size: calc(10px + 2vmin)
 }
 
 @keyframes Pyramid {

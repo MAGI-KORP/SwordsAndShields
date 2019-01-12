@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Pyramid from '../../images/pyramid.png'
+import Pyramid from '../../images/Pyramid.png'
 import Typed from 'react-typed';
 import { Link } from 'react-router-dom'
 
@@ -25,7 +25,7 @@ class Home extends Component {
                     showCursor={false} 
                 />
           </h2>
-          <Link className="nav-link-creation" to='/creation'>
+          <Link className="nav-link-creation" to='/registration'>
             <Typed 
                     strings={['[Create An Account]']} 
                     typeSpeed={75}
