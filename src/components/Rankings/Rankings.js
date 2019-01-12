@@ -2,13 +2,26 @@ import React, { Component } from 'react';
 // import Typed from 'react-typed';
 import PlayerRanking from './PlayerRanking';
 
-const rankings = require("./ranking.json");
+// const rankings = require("./ranking.json");
+const orm = require("../../data/orm");
 
 class Rankings extends Component
 {   state =
-    {   standings: rankings
+    {   // standings: rankings
+        standings: []
     }
 
+    componentDidMount ()
+    {
+        orm.getPlayers()
+        .then (data =>
+        {   this.setState ({ standings: data })
+        })
+        .catch (err =>
+        {   console.log (err);
+        })
+    }
+    
     render()
     {   return (
             <div>
