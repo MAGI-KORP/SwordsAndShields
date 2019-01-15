@@ -78,7 +78,7 @@ passport.use(
 
 const PORT = process.env.PORT || 8080
 
-// app.use(API)
+app.use("/api", API)
 // app.use(htmlRoutes)
 app.use("/user", htmlRoutes)
 // app.use("/login", htmlRoutes)

@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import PlayerRanking from './PlayerRanking';
 
 // const rankings = require("./ranking.json");
-const orm = require("../../data/orm");
+const axios = require("axios");
+const orm = require("../../db/orm");
 
 class Rankings extends Component
 {   state =
@@ -13,7 +14,7 @@ class Rankings extends Component
 
     componentDidMount ()
     {
-        orm.getPlayers()
+        orm.get("/api/getRankings")
         .then (data =>
         {   this.setState ({ standings: data })
         })
