@@ -4,7 +4,6 @@ const orm = require("../db/orm.js")
 
 // ...Add configure ExpressJS
 const app = express();
-const router = express.Router ();
 app.use ("/", router);
 app.use(express.json ());
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +21,7 @@ router
 // })
 .get("/getRankings", (req, res) =>
 {
+console.log ("/api/getRankings");
     orm.getRankings ()
     .then (function (data)
     {
