@@ -11,8 +11,8 @@ const orm =
 
         return new Promise ((resolve, reject) =>
         {       
-            const query = "select name, wins, losses, (wins / (wins + losses)) as pct " +
-                          "from characters order by pct desc;";
+            const query = "select name, wins, losses, (wins / (wins + losses)) as percent " +
+                          "from characters order by percent desc;";
             connection.query (query, function (err, results)
             {   // error or not, we're done with the connection for now, so close it...
                 // connection.end();

@@ -30,7 +30,7 @@ class Rankings extends Component
                         name = { player.name }
                         wins = { player.wins }
                         losses = { player.losses }
-                        percent = { player.pct }
+                        percent = { player.percent }
                     />
                 ))}
             </div>
