@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
-import Typed from 'react-typed';
+// import React, { Component } from 'react';
+// import Typed from 'react-typed';
 
-class Character extends Component {
-    state = {
-        id: "",
-        name: ""
-    }
+// class Character extends Component {
+//     state = {
+//         id: "",
+//         name: ""
+//     }
 
 
-    componentDidMount() {
-        fetch("/api/2")
-        .then(res => res.json())
-        .then(characters => this.setState({name: characters[0].name}, () => {
-            console.log("Characters received..", characters)
-            console.log(this.state)
-        }))
-    }
+//     componentDidMount() {
+//         fetch("/api/2")
+//         .then(res => res.json())
+//         .then(characters => this.setState({name: characters[0].name}, () => {
+//             console.log("Characters received..", characters)
+//             console.log(this.state)
+//         }))
+//     }
 
-    render() {
-        return (
-            <div>
-                <h1>Character</h1>
-                <p>Name: {this.state.name}</p>
-            </div>
-        )
-    }
+//     render() {
+//         return (
+//             <div>
+//                 <h1>Character</h1>
+//                 <p>Name: {this.state.name}</p>
+//             </div>
+//         )
+//     }
 
  
-}
+// }
 
-export default Character
+// export default Character
 
             // <h1>
             //     <Typed 

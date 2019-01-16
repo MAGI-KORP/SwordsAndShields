@@ -1,88 +1,43 @@
-const express = require("express")
-const bodyParser = require("body-parser")
-const API = require("./routes/APIroutes")
-const htmlRoutes = require("./routes/htmlRoutes")
+const express = require('express')
+const bodyParser = require('body-parser')
+const morgan = require('morgan')
+const session = require('express-session')
+const dbConnection = require('./db') 
+const MongoStore = require('connect-mongo')(session)
+const passport = require('./passport');
 const app = express()
+const PORT = 8080
+// Route requires
+const user = require('./routes/htmlRoutes')
 
-// // session and authentication requires
-
-const cookieParser = require("cookie-parser")
-const session = require("express-session")
-const passport = require("passport")
-const MySQLstore = require("express-mysql-session")(session)
-const LocalStrategy = require("passport-local").Strategy
-const bcrypt = require("bcrypt")
-
-
-
+// MIDDLEWARE
+app.use(morgan('dev'))
+app.use(
+	bodyParser.urlencoded({
+		extended: false
+	})
+)
 app.use(bodyParser.json())
 
-// app.use(express.static('public'))
+// Sessions
+app.use(
+	session({
+		secret: 'fraggle-rock', //pick a random string to make the hash that is generated secure
+		store: new MongoStore({ mongooseConnection: dbConnection }),
+		resave: false, //required
+		saveUninitialized: false //required
+	})
+)
 
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
-
-// //session and  authentication
-app.use(cookieParser())
-
-
-let options = {
-    host: "localhost",
-    user: "root",
-    password: "root",
-    database: "swords_and_shields_db"
-}
-
-const sessionStore = new MySQLstore(options)
-
-app.use(session({
-    secret: "inmmyuihwiuhdaiuscuiua",
-    resave: false,
-    store: sessionStore,
-    saveUninitialized: false,
-    // cookie: {secure: true}
-
-}))
-
+// Passport
 app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.session()) // calls the deserializeUser
 
-passport.use(
-    new LocalStrategy(
-    function(username, password, done) {
-      const connection = require("./connection/connection.js")
-  
-      connection.query("SELECT id, password FROM users WHERE username = ?", [username], function (err, results, fields){
-        if (err) {done(err)}
-        
-        if (results.length === 0) {
-          done(null, false)
-        } else {
-            const hash = results[0].password.toString()
-            bcrypt.compare(password, hash, function(err, response){
-          
-            if(response === true) {
-            
-              console.log("log in totally worked")
-              return done(null, {user_id: results[0].id})
-          
-            } else {
-            
-              return done(null, false)
-            }
-          })
-        }
-      })
-    }
-))
 
-const PORT = process.env.PORT || 8080
+// Routes
+app.use('/user', user)
 
-// app.use(API)
-// app.use(htmlRoutes)
-app.use("/user", htmlRoutes)
-// app.use("/login", htmlRoutes)
-
+// Starting Server 
 app.listen(PORT, () => {
-    console.log(`App is listening on PORT ${PORT}`)
+	console.log(`App listening on PORT: ${PORT}`)
 })

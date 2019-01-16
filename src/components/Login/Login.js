@@ -3,8 +3,8 @@ import { Redirect } from "react-router-dom"
 import axios from "axios"
 
 class Login extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             username: "",
             password: "",
