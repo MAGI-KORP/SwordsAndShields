@@ -1,11 +1,25 @@
 // import React, { Component } from 'react';
 // import Typed from 'react-typed';
 
-// class Character extends Component {
-//     state = {
-//         id: "",
-//         name: ""
-//     }
+class Character extends Component {
+    state = {
+        name: "Colin the Cat-Lord",
+        level: "5",
+        class: "Rogue",
+        attributes:{
+            strength: "2",
+            defense: "1",
+            evasion: "3"
+        },
+        stats:{
+            wins: "100",
+            losses: "0",
+            ties: "1",
+            damageDealt: "232,456",
+            damageTaken: "-1"
+        },
+        backstory: "Behold, Colin the Cat-Lord, a simple and wayward peasant turned hero after saving his village from bandits! Colin is always accompanied by his two cats, Luca and Zoey, both are known to be quite formidable adversaries in their own right."
+    }
 
 
 //     componentDidMount() {
