@@ -47,12 +47,9 @@ class Registration extends Component {
     }
 
     render() {
-        if (this.state.redirectTo) {
-            return <Redirect to={{ pathname: this.state.redirectTo }} />
-        } else {
             return (
                 <div className="row">
-                 <div className="col-3"></div>            
+                    <div className="col-3"></div>            
                     <div className="col-6">
                         <form>
                         <h2 className="main">Account Information</h2>
@@ -88,21 +85,7 @@ class Registration extends Component {
                     </div>
                     <div className="col-3"></div>  
                 </div>
-            )
-        }
-                                    <label for="username">Username:</label>
-                                    <input type="username" class="form-control" id="inputEmail4" placeholder="Email"></input>
-                                </div>
-                                <div className="form-group col-12">
-                                    <label for="password">Password:</label>
-                                    <input type="password" class="form-control" id="inputPassword4" placeholder="Password"></input>
-                                </div>
-                            </div>
-                            <button type="submit">Submit</button>
-                        </form>
-                    </div>
-                <div className="col-3"></div>  
-            </div>
+
         )
     }
 }
