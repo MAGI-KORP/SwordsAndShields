@@ -69,7 +69,7 @@ class App extends Component {
             <Route path = "/user/login" render={() => 
               <Login updateUser={this.updateUser} />
               } />
-            {/* <Route path = "/character" component = {Character} /> */}
+            <Route path = "/character" component = {Character} />
             <Route path = "/arena" component = {Arena} />
             <Route path = "/rankings" component = {Rankings} />
           </div>

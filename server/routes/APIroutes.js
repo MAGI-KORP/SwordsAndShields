@@ -1,16 +1,20 @@
-// const express = require("express")
-// const router = express.Router()
+const express = require("express")
+const router = express.Router()
+const CreateCharacter = require("../db/models/createCharacter")
+const mongoose = require("mongoose")
 
-// const connection = require("../connection/connection.js")
+router.post("/", (req, res) => {
+  const newCharacter = new CreateCharacter({
+    username: req.body.username,
+    firstName: req.body.firstName,
+    surname: req.body.surname,
+    strength: req.body.strength,
+    defense: req.body.defense,
+    evasion: req.body.evasion
+  }).save((err, savedChar) => {
+    if (err) res.json(err)
+    res.json(savedChar)
+  })
+})
 
-// router.get("/api/:id", (req, res) => {
-//     connection.query("SELECT id, name FROM characters WHERE ?", {
-//         id: req.params.id
-//      }, (err, result) => {
-//         if (err) throw err
-
-//         res.json(result)
-//     })
-// })
-
-// module.exports = router
+module.exports = router
