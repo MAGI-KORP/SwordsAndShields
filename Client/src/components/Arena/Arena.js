@@ -166,25 +166,20 @@ class Arena extends Component {
         const { endpoint } = this.state;
         const socket = socketIOClient(endpoint);
         this.setState({socket : socket})
-        if(!this.state.slot){
-            socket.on("initialize", (slot) => {
-                this.setSlot(slot)
-            })
-        }
+        
         socket.on("response", data => {
             if(data.players){
                 this.setState({players: data.players})
+                var index = this.state.players.findIndex(function(element){
+                    return element === data.playerName
+                })
+                this.setState({slot: (index + 1)})
             } 
-            // if(data.status){
-                
-            // }
-            
         });
     }
 
     componentWillUnmount(){
-        this.state.socket.emit("playerLeft", this.state.slot)
-        this.state.socket.disconnect()
+        this.state.socket.emit("bye", this.state.slot)
     }
 }
 

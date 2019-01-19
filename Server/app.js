@@ -21,12 +21,9 @@ let sockets = []
 function initialize(socket) {
   playerCount++
   var playerName = "Player " + playerCount
-  sockets.push(socket)
   players.push(playerName)
   console.log(players)
-  var slot = players.length
-  socket.emit("initialize", slot)
-  io.emit("response", {status: status, players: players })
+  io.emit("response", {status: status, players: players, playerName: playerName })
 }
 
 function issueSlot(socket, index){
@@ -36,8 +33,7 @@ function issueSlot(socket, index){
 function disconnect(slot) {
   var index = slot - 1
   players.splice(index, 1)
-  sockets.splice(index, 1)
-  sockets.map(issueSlot)
+  io.emit("response", {players: players})
   console.log(players)
 }
 
@@ -45,10 +41,18 @@ io.on("connection", socket => {
   console.log("New client connected")
   initialize(socket)
 
+  socket.on("bye", slot => {
+    console.log("bye")
+    disconnect(slot)
+    socket.disconnect()
+  })
+
   socket.on("disconnect", socket => {
     console.log("Client disconnected")
   });
 });
+
+
 
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
