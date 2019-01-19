@@ -22,6 +22,7 @@ function initialize(socket) {
   playerCount++
   var playerName = "Player " + playerCount
   players.push(playerName)
+  sockets.push(socket)
   console.log(players)
   io.emit("response", {status: status, players: players, playerName: playerName })
 }
@@ -30,25 +31,32 @@ function issueSlot(socket, index){
   socket.emit("initialize", (index + 1)) 
 }
 
-function disconnect(slot) {
-  var index = slot - 1
+function disconnect(socket) {
+  var index = sockets.findIndex(function(element){
+    return element === socket
+  })
   players.splice(index, 1)
+  sockets.splice(index,1)
   io.emit("response", {players: players})
-  console.log(players)
+  
 }
 
 io.on("connection", socket => {
+  var thisSocket = socket
   console.log("New client connected")
-  initialize(socket)
+  initialize(thisSocket)
 
-  socket.on("bye", slot => {
+  socket.on("bye", function() {
     console.log("bye")
-    disconnect(slot)
-    socket.disconnect()
+    disconnect(thisSocket)
+    setTimeout(function(){
+      socket.disconnect()
+    },2000)
   })
 
-  socket.on("disconnect", socket => {
+  socket.on("disconnect", function() {
     console.log("Client disconnected")
+    disconnect(thisSocket)
   });
 });
 

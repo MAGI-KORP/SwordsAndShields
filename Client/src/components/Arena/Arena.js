@@ -71,10 +71,19 @@ class Arena extends Component {
 
     display(array) {
         if(array === this.state.log){
-            return array.map(this.log)
+            return array.map(function(line){
+                return <p id="logElement">{line}</p>
+            })
         }
         else{
-            return <p>{array.map(this.player)}</p>
+            return <p>{array.map(function(player,index, array){
+                if(index === (array.length - 1)){
+                    return player
+                }
+                else{
+                    return player + ", "
+                }
+            })}</p>
         }
         
     }
@@ -169,17 +178,19 @@ class Arena extends Component {
         
         socket.on("response", data => {
             if(data.players){
+                console.log(data.players)
                 this.setState({players: data.players})
                 var index = this.state.players.findIndex(function(element){
                     return element === data.playerName
                 })
                 this.setState({slot: (index + 1)})
-            } 
+            }
         });
+
     }
 
     componentWillUnmount(){
-        this.state.socket.emit("bye", this.state.slot)
+        this.state.socket.emit("bye", this.state.socket)
     }
 }
 
