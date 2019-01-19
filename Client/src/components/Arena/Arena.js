@@ -6,7 +6,6 @@ import socketIOClient from "socket.io-client";
 class Arena extends Component {
     state = {
         username: "",
-        message: "",
         slot: 0,
         log:[],
         players: [],
@@ -53,7 +52,7 @@ class Arena extends Component {
     
     makeMove(player, choice) { 
         console.log(choice)   
-        this.state.socket.emit("choice", player,choice)
+        this.state.socket.emit("choice",{player:player, choice:choice})
     }
 
     log(line) {
@@ -93,24 +92,6 @@ class Arena extends Component {
         this.setState({slot: slot})
         console.log("Player Slot: " + this.state.slot)
     }
-
-    updateLog(message) {
-        var string = String(message)
-        var newLog = this.state.log
-        newLog.push(string)
-        console.log(newLog)
-        this.setState({log: newLog})
-    }
-
-    // lobbyMessage(array){
-    //     var newLog = this.state.log
-    //     array.forEach(function(item){
-    //         var message = item + " is already in the arena!"
-    //         newLog.push(message)
-    //     })
-    //     this.setState({log: newLog})
-    // }
-
 
     render() {
         return (
@@ -175,18 +156,31 @@ class Arena extends Component {
         const { endpoint } = this.state;
         const socket = socketIOClient(endpoint);
         this.setState({socket : socket})
-        
         socket.on("response", data => {
-            if(data.players){
+                if(!this.state.username){
+                    this.setState({username: data.playerName})
+                }
                 console.log(data.players)
                 this.setState({players: data.players})
                 var index = this.state.players.findIndex(function(element){
-                    return element === data.playerName
-                })
+                    return element === this.username
+                    
+                },this.state)
+                console.log(index)
                 this.setState({slot: (index + 1)})
-            }
+                this.render()
         });
 
+        socket.on("battleLog", data => {
+            console.log(data.log)
+            this.setState({log: data.log})
+            this.render()
+        })
+        console.log(this.state.slot, this.state.username)
+    }
+
+    componentDidUpdate() {
+        this.render()
     }
 
     componentWillUnmount(){
