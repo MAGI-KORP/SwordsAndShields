@@ -10,54 +10,45 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 let log = [];
+let status = ""
+let playerCount = 0
 let playerOne = {};
 let playerTwo = {};
 let players = []
 let sockets = []
-let playerName = 0
-let status = ""
+
 
 function initialize(socket) {
+  playerCount++
+  var playerName = "Player " + playerCount
   sockets.push(socket)
-  var slot = sockets.length
-  socket.emit("initialize", { slot: slot })
-  
-  var message = "Player " + slot +  " has entered the arena!"
-  io.emit("response", { message: message, status: status, players: players })
-  playerName++
   players.push(playerName)
-
-  if(players.length === 2){
-    status = "Player: " + players[0] + " and " + "Player: " + players[1] + " are currently dueling!"
-    //begin combat logic
-  }
+  console.log(players)
+  var slot = players.length
+  socket.emit("initialize", slot)
+  io.emit("response", {status: status, players: players })
 }
 
-function reissueSlot(socket, index){
-  socket.emit("initialize", (index + 1))
+function issueSlot(socket, index){
+  socket.emit("initialize", (index + 1)) 
 }
 
-function disconnect(data) {
-  var index = sockets.indexOf(data.socket)
-  var message = "Player: " + players[index] + " has left the arena"
+function disconnect(slot) {
+  var index = slot - 1
   players.splice(index, 1)
   sockets.splice(index, 1)
-  sockets.map(reissueSlot)
-  io.emit("response", {message: message})
+  sockets.map(issueSlot)
+  console.log(players)
 }
 
 io.on("connection", socket => {
   console.log("New client connected")
   initialize(socket)
 
-  socket.on("disconnect", function(socket) {
+  socket.on("disconnect", socket => {
     console.log("Client disconnected")
-    disconnect({socket: socket})
   });
 });
 
-io.on("choice", socket => {
-  
-})
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

@@ -9,6 +9,7 @@ class Arena extends Component {
         message: "",
         slot: 0,
         log:[],
+        players: [],
         endpoint: "http://127.0.0.1:4001",
         socket: false,
         one: {
@@ -59,8 +60,23 @@ class Arena extends Component {
         return <p id="logElement">{line}</p>
     }
 
-    displayLog() {
-        return this.state.log.map(this.log)
+    player(player, index, array) {
+        if(index === (array.length - 1)){
+            return player
+        }
+        else{
+            return player + ", "
+        }
+    }
+
+    display(array) {
+        if(array === this.state.log){
+            return array.map(this.log)
+        }
+        else{
+            return <p>{array.map(this.player)}</p>
+        }
+        
     }
 
     setSlot(num) {
@@ -115,8 +131,8 @@ class Arena extends Component {
                     </div>
                     <div className="col-4">
                         <h1 className="combatDisplayHeader">Combat Log</h1>
-                        {/* <p>{this.state.response}</p> */}
-                        <h2 id="log">{this.displayLog()}</h2>
+                        <h2 id="log">{this.display(this.state.log)}</h2>
+                        <h3 id="playerList">Players In Lobby:{this.display(this.state.players)}</h3>
                     </div>
                     <div className="col-4">
                         <div style={{height: "60vh"}}>
@@ -151,22 +167,23 @@ class Arena extends Component {
         const socket = socketIOClient(endpoint);
         this.setState({socket : socket})
         if(!this.state.slot){
-            socket.on("initialize", (data) => {
-                this.setSlot(data.slot)
+            socket.on("initialize", (slot) => {
+                this.setSlot(slot)
             })
         }
         socket.on("response", data => {
-            // if(data.players){
-            //     this.lobbyMessage(data.players)
-            // }   
-            if(data.status){
-                this.updateLog(data.status)
-            }
-            this.updateLog(data.message)
+            if(data.players){
+                this.setState({players: data.players})
+            } 
+            // if(data.status){
+                
+            // }
+            
         });
     }
 
     componentWillUnmount(){
+        this.state.socket.emit("playerLeft", this.state.slot)
         this.state.socket.disconnect()
     }
 }
