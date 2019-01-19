@@ -5,6 +5,7 @@ import socketIOClient from "socket.io-client";
 
 class Arena extends Component {
     state = {
+        username: "",
         message: "",
         slot: 0,
         log:[],
@@ -68,19 +69,39 @@ class Arena extends Component {
         console.log("Player Slot: " + this.state.slot)
     }
 
+    updateLog(message) {
+        var string = String(message)
+        var newLog = this.state.log
+        newLog.push(string)
+        console.log(newLog)
+        this.setState({log: newLog})
+    }
+
+    // lobbyMessage(array){
+    //     var newLog = this.state.log
+    //     array.forEach(function(item){
+    //         var message = item + " is already in the arena!"
+    //         newLog.push(message)
+    //     })
+    //     this.setState({log: newLog})
+    // }
+
 
     render() {
         return (
             <div>
                 <div className="row combatantDisplay">
                     <div className="col-4">
-                        <h1 className="combatDisplayHeader">{this.state.one.name}</h1>
-                        <h2>Class: <span>{this.state.one.class}</span></h2>
-                        <h2>Level: <span>{this.state.one.level}</span></h2>
-                        <h2>Backstory: <br/>
-                            <span>{this.state.one.backstory}</span>
-                        </h2>
-                        <div style={(this.state.slot === 1) ? {display: "show"} : {display: "none"}} className="row">
+                        <div style={{height: "60vh"}}>
+                            <h1 className="combatDisplayHeader">{this.state.one.name}</h1>
+                            <h2>Class: <span>{this.state.one.class}</span></h2>
+                            <h2>Level: <span>{this.state.one.level}</span></h2>
+                            <h2>Backstory: <br/>
+                                <span>{this.state.one.backstory}</span>
+                            </h2>
+                        </div>
+                        
+                        <div style={(this.state.slot === 1) ? {display: "flex"} : {display: "none"}} className="row">
                             <div className="col-4">
                                 <button onClick={() => {this.makeMove("Player 1", "Attack")}}>Attack</button>
                             </div>
@@ -95,16 +116,19 @@ class Arena extends Component {
                     <div className="col-4">
                         <h1 className="combatDisplayHeader">Combat Log</h1>
                         {/* <p>{this.state.response}</p> */}
-                        <p id="log">{this.displayLog()}</p>
+                        <h2 id="log">{this.displayLog()}</h2>
                     </div>
                     <div className="col-4">
-                        <h1 className="combatDisplayHeader">{this.state.two.name}</h1>
-                        <h2>Class: <span>{this.state.two.class}</span></h2>
-                        <h2>Level: <span>{this.state.two.level}</span></h2>
-                        <h2>Backstory: <br/>
-                            <span>{this.state.two.backstory}</span>
-                        </h2>
-                        <div style={(this.state.slot === 2) ? {display: "show"} : {display: "none"}} className="row">
+                        <div style={{height: "60vh"}}>
+                            <h1 className="combatDisplayHeader">{this.state.two.name}</h1>
+                            <h2>Class: <span>{this.state.two.class}</span></h2>
+                            <h2>Level: <span>{this.state.two.level}</span></h2>
+                            <h2>Backstory: <br/>
+                                <span>{this.state.two.backstory}</span>
+                            </h2>
+                        </div>
+                        
+                        <div style={(this.state.slot === 2) ? {display: "flex"} : {display: "none"}} className="row">
                             <div className="col-4">
                                 <button onClick={() => {this.makeMove("Player 2", "Attack")}}>Attack</button>
                             </div>
@@ -127,9 +151,23 @@ class Arena extends Component {
         const socket = socketIOClient(endpoint);
         this.setState({socket : socket})
         if(!this.state.slot){
-            socket.on("initialize", num => this.setSlot(num))
-        }     
-        socket.on("response", data => this.setState({log: data}));
+            socket.on("initialize", (data) => {
+                this.setSlot(data.slot)
+            })
+        }
+        socket.on("response", data => {
+            // if(data.players){
+            //     this.lobbyMessage(data.players)
+            // }   
+            if(data.status){
+                this.updateLog(data.status)
+            }
+            this.updateLog(data.message)
+        });
+    }
+
+    componentWillUnmount(){
+        this.state.socket.disconnect()
     }
 }
 

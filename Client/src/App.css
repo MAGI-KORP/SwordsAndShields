@@ -40,6 +40,18 @@ html{
   color: #61dafb;
 }
 
+button {
+  background: black;
+  color: white;
+}
+
+button:hover {
+  animation-name: nav-link;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-duration: 500ms;
+}
+
 .characterHeader {
   font-size: calc(10px + 2vmin);
 }

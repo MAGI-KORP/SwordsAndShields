@@ -13,34 +13,46 @@ let log = [];
 let playerOne = {};
 let playerTwo = {};
 let players = []
+let sockets = []
+let playerName = 0
+let status = ""
 
 function initialize(socket) {
-  players.push(socket)
-  socket.emit("initialize", (players.length))
+  sockets.push(socket)
+  var slot = sockets.length
+  socket.emit("initialize", { slot: slot })
+  
+  var message = "Player " + slot +  " has entered the arena!"
+  io.emit("response", { message: message, status: status, players: players })
+  playerName++
+  players.push(playerName)
+
+  if(players.length === 2){
+    status = "Player: " + players[0] + " and " + "Player: " + players[1] + " are currently dueling!"
+    //begin combat logic
+  }
 }
 
-function issuePlayerSlot(socket, index){
+function reissueSlot(socket, index){
   socket.emit("initialize", (index + 1))
 }
 
-function disconnect(socket) {
-  var index = players.indexOf(socket)
+function disconnect(data) {
+  var index = sockets.indexOf(data.socket)
+  var message = "Player: " + players[index] + " has left the arena"
   players.splice(index, 1)
-  console.log(players.length)
-  players.map(issuePlayerSlot)
+  sockets.splice(index, 1)
+  sockets.map(reissueSlot)
+  io.emit("response", {message: message})
 }
 
 io.on("connection", socket => {
   console.log("New client connected")
   initialize(socket)
-  
-  // socket.on("choice", function(player, choice) {
-  //   log.push(player + " chose to " + choice)
-  //   io.emit("response", log)
-  // })
-  socket.on("disconnect", function() {
+
+  socket.on("disconnect", function(socket) {
     console.log("Client disconnected")
-    disconnect(socket)
+    disconnect({socket: socket})
   });
 });
 
