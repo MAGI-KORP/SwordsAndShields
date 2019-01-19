@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-const io = require('socket.io-client')
-const socket = io()  
+import socketIOClient from "socket.io-client";
+// const io = require('socket.io-client')
+// const socket = io()  
 
 class Arena extends Component {
     state = {
-        response: false,
+        username: "",
+        message: "",
+        slot: 0,
+        log:[],
         endpoint: "http://127.0.0.1:4001",
+        socket: false,
         one: {
             name: "Colin the Cat-Lord",
             level: "5",
@@ -45,35 +50,95 @@ class Arena extends Component {
     }
 
     
-    makeMove(choice) {
-        console.log("Button Clicked")
-        socket.emit("choice", choice)
+    makeMove(player, choice) { 
+        console.log(choice)   
+        this.state.socket.emit("choice", player,choice)
     }
+
+    log(line) {
+        return <p id="logElement">{line}</p>
+    }
+
+    displayLog() {
+        return this.state.log.map(this.log)
+    }
+
+    setSlot(num) {
+        var slot = Number(num)
+        this.setState({slot: slot})
+        console.log("Player Slot: " + this.state.slot)
+    }
+
+    updateLog(message) {
+        var string = String(message)
+        var newLog = this.state.log
+        newLog.push(string)
+        console.log(newLog)
+        this.setState({log: newLog})
+    }
+
+    // lobbyMessage(array){
+    //     var newLog = this.state.log
+    //     array.forEach(function(item){
+    //         var message = item + " is already in the arena!"
+    //         newLog.push(message)
+    //     })
+    //     this.setState({log: newLog})
+    // }
+
 
     render() {
         return (
             <div>
                 <div className="row combatantDisplay">
                     <div className="col-4">
-                        <h1 className="combatDisplayHeader">{this.state.one.name}</h1>
-                        <h2>Class: <span>{this.state.one.class}</span></h2>
-                        <h2>Level: <span>{this.state.one.level}</span></h2>
-                        <h2>Backstory: <br/>
-                            <span>{this.state.one.backstory}</span>
-                        </h2>
-                        <button onClick={this.makeMove("Attack")}>Attack</button>
+                        <div style={{height: "60vh"}}>
+                            <h1 className="combatDisplayHeader">{this.state.one.name}</h1>
+                            <h2>Class: <span>{this.state.one.class}</span></h2>
+                            <h2>Level: <span>{this.state.one.level}</span></h2>
+                            <h2>Backstory: <br/>
+                                <span>{this.state.one.backstory}</span>
+                            </h2>
+                        </div>
+                        
+                        <div style={(this.state.slot === 1) ? {display: "flex"} : {display: "none"}} className="row">
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 1", "Attack")}}>Attack</button>
+                            </div>
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 1", "Defend")}}>Defend</button>
+                            </div>
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 1", "Evade")}}>Evade</button>
+                            </div>
+                        </div>                                                           
                     </div>
                     <div className="col-4">
                         <h1 className="combatDisplayHeader">Combat Log</h1>
-                        <p>{this.state.response}</p>
+                        {/* <p>{this.state.response}</p> */}
+                        <h2 id="log">{this.displayLog()}</h2>
                     </div>
                     <div className="col-4">
-                        <h1 className="combatDisplayHeader">{this.state.two.name}</h1>
-                        <h2>Class: <span>{this.state.two.class}</span></h2>
-                        <h2>Level: <span>{this.state.two.level}</span></h2>
-                        <h2>Backstory: <br/>
-                            <span>{this.state.two.backstory}</span>
-                        </h2>
+                        <div style={{height: "60vh"}}>
+                            <h1 className="combatDisplayHeader">{this.state.two.name}</h1>
+                            <h2>Class: <span>{this.state.two.class}</span></h2>
+                            <h2>Level: <span>{this.state.two.level}</span></h2>
+                            <h2>Backstory: <br/>
+                                <span>{this.state.two.backstory}</span>
+                            </h2>
+                        </div>
+                        
+                        <div style={(this.state.slot === 2) ? {display: "flex"} : {display: "none"}} className="row">
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 2", "Attack")}}>Attack</button>
+                            </div>
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 2", "Defend")}}>Defend</button>
+                            </div>
+                            <div className="col-4">
+                                <button onClick={() => {this.makeMove("Player 2", "Evade")}}>Evade</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,8 +146,28 @@ class Arena extends Component {
         )
     }
 
-    componentDidMount() {      
-        socket.on("response", data => this.setState({ response: data }));
+    componentDidMount() {
+        const { endpoint } = this.state;
+        const socket = socketIOClient(endpoint);
+        this.setState({socket : socket})
+        if(!this.state.slot){
+            socket.on("initialize", (data) => {
+                this.setSlot(data.slot)
+            })
+        }
+        socket.on("response", data => {
+            // if(data.players){
+            //     this.lobbyMessage(data.players)
+            // }   
+            if(data.status){
+                this.updateLog(data.status)
+            }
+            this.updateLog(data.message)
+        });
+    }
+
+    componentWillUnmount(){
+        this.state.socket.disconnect()
     }
 }
 

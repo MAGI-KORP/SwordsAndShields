@@ -33,6 +33,14 @@ class Home extends Component {
                     showCursor={false}
             />
           </Link>
+          <Link className="nav-link-creation" to='/registration'>
+            <Typed 
+                    strings={['[Login]']} 
+                    typeSpeed={75}
+                    startDelay={15000}
+                    showCursor={false}
+            />
+          </Link>
         </div>
         )
     }
