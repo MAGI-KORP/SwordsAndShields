@@ -109,13 +109,13 @@ class Arena extends Component {
                         
                         <div style={(this.state.slot === 1) ? {display: "flex"} : {display: "none"}} className="row">
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 1", "Attack")}}>Attack</button>
+                                <button onClick={() => {this.makeMove("Player 1", "attack")}}>Attack</button>
                             </div>
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 1", "Defend")}}>Defend</button>
+                                <button onClick={() => {this.makeMove("Player 1", "defend")}}>Defend</button>
                             </div>
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 1", "Evade")}}>Evade</button>
+                                <button onClick={() => {this.makeMove("Player 1", "evade")}}>Evade</button>
                             </div>
                         </div>                                                           
                     </div>
@@ -136,13 +136,13 @@ class Arena extends Component {
                         
                         <div style={(this.state.slot === 2) ? {display: "flex"} : {display: "none"}} className="row">
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 2", "Attack")}}>Attack</button>
+                                <button onClick={() => {this.makeMove("Player 2", "attack")}}>Attack</button>
                             </div>
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 2", "Defend")}}>Defend</button>
+                                <button onClick={() => {this.makeMove("Player 2", "defend")}}>Defend</button>
                             </div>
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 2", "Evade")}}>Evade</button>
+                                <button onClick={() => {this.makeMove("Player 2", "evade")}}>Evade</button>
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@ class Arena extends Component {
     }
 
     componentWillUnmount(){
-        this.state.socket.emit("bye", this.state.socket)
+        this.state.socket.disconnect()
     }
 }
 

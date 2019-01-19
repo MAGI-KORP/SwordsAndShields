@@ -127,7 +127,7 @@ button:hover {
 }
 
 #logElement{
-  margin:0;
+  margin:5px 0px 5px 0px;
   font-size: calc(6px + 2vmin)
 }
 
