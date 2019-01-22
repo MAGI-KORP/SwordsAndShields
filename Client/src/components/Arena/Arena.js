@@ -20,13 +20,6 @@ class Arena extends Component {
                 defense: "1",
                 evasion: "3"
             },
-            stats:{
-                wins: "100",
-                losses: "0",
-                ties: "1",
-                damageDealt: "232,456",
-                damageTaken: "-1"
-            },
             backstory: "Behold, Colin the Cat-Lord, a simple and wayward peasant turned hero after saving his village from bandits! Colin is always accompanied by his two cats, Luca and Zoey, both are known to be quite formidable adversaries in their own right."
         },
         two: {
@@ -37,13 +30,6 @@ class Arena extends Component {
                 strength: "3",
                 defense: "2",
                 evasion: "1"
-            },
-            stats:{
-                wins: "0",
-                losses: "0",
-                ties: "0",
-                damageDealt: "0",
-                damageTaken: "0"
             },
             backstory: "Ah, the great Bad-Guy McNoobson has graduated from Noob Academy, equipped with sword and shield in hand, he begins his first day at the workplace! Let's see how it goes"
         }
