@@ -141,7 +141,7 @@ class Character extends Component {
                                             <div>
                                                 {this.state.strength}
                                             </div>
-                                            <button type="button" className="btn btn-secondary">-</button>
+                                            <button type="button" className="btn btn-secondary" id="strength" onClick={this.statDecrease}>-</button>
                                         </div>
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@ class Character extends Component {
                                         <div>
                                             {this.state.defense}
                                         </div>
-                                        <button type="button" className="btn btn-secondary" id="">-</button>
+                                        <button type="button" className="btn btn-secondary" id="defense" onClick={this.statDecrease}>-</button>
                                     </div>
                                 </div>
                                 </div>
@@ -179,7 +179,7 @@ class Character extends Component {
                             <button 
                             
                                 type="submit"
-                                onClick={this.handleSubmit}>Submit</button>
+                                onClick={this.handleSubmit}>Create Character</button>
                         </form>
                     </div>
                     <div className="col-3"></div>  

@@ -17,4 +17,11 @@ router.post("/", (req, res) => {
   })
 })
 
+router.get("/please", (req, res) => {
+  CreateCharacter.findOne({firstName: "Smasher" }, (err, characterInfo) => {
+    res.json(characterInfo)
+  }) 
+})
+
+
 module.exports = router
