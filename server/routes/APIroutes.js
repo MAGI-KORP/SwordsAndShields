@@ -1,3 +1,4 @@
+const chalk = require ("chalk")
 const express = require("express")
 const router = express.Router()
 const orm = require("../db/orm.js")
@@ -21,10 +22,9 @@ router
 // })
 .get("/getRankings", (req, res) =>
 {
-console.log ("/api/getRankings");
     orm.getRankings ()
     .then (function (data)
-    {
+    {  
         res.status(200).send(data)
     })
     .catch (function (err)
