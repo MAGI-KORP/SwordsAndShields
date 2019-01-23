@@ -9,7 +9,7 @@ class Arena extends Component {
         slot: 0,
         log:[],
         players: [],
-        endpoint: "http://127.0.0.1:4001",
+        endpoint: "https://swords-and-shields.herokuapp.com:4001",
         socket: false,
         one: {
             name: "Colin the Cat-Lord",
