@@ -12,7 +12,7 @@ class Arena extends Component {
         slot: 0,
         log:[],
         players: [],
-        endpoint: ":" + port,
+        endpoint: "https://swords-and-shields.herokuapp.com/",
         socket: false,
         one: {
             name: "Colin the Cat-Lord",
@@ -143,7 +143,7 @@ class Arena extends Component {
 
     componentDidMount() {
         const { endpoint } = this.state;
-        const socket = socketIOClient(endpoint);
+        const socket = socketIOClient(endpoint,{transports:['websocket']});
         console.log(socket)
         this.setState({socket : socket})
         socket.on("response", data => {
