@@ -9,6 +9,7 @@ import Rankings from './components/Rankings/Rankings'
 import Footer from './components/Footer/Footer'
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import axios from "axios"
+import CharDisplay from './components/CharDisplay/CharDisplay';
 
 class App extends Component {
   constructor() {
@@ -69,6 +70,7 @@ class App extends Component {
             <Route path = "/user/login" render={() => 
               <Login updateUser={this.updateUser} />
               } />
+            <Route path="/mycharacter" component={CharDisplay} />
             <Route path = "/character" component = {Character} />
             <Route path = "/arena" component = {Arena} />
             <Route path = "/rankings" component = {Rankings} />

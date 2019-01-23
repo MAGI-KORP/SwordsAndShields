@@ -13,7 +13,7 @@ class Navigation extends Component {
     logout(event) {
         event.preventDefault()
         console.log('logging out')
-        axios.post('/logout').then(response => {
+        axios.post('/user/logout').then(response => {
           console.log(response.data)
           if (response.status === 200) {
             this.props.updateUser({
