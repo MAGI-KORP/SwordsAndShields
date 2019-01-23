@@ -155,7 +155,7 @@ app.use(passport.session()) // calls the deserializeUser
 // Routes
 app.use("/user", user)
 app.use("/api", api)
-app.use("/", indexRoutes)
+// app.use("/", indexRoutes)
 
 // Starting Server 
 app.listen(PORT, () => {
