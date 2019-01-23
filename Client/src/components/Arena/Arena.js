@@ -142,8 +142,8 @@ class Arena extends Component {
     }
 
     componentDidMount() {
-        const { endpoint } = this.state;
-        const socket = socketIOClient(endpoint);
+        // const { endpoint } = this.state;
+        const socket = socketIOClient();
         console.log(socket)
         this.setState({socket : socket})
         socket.on("response", data => {
