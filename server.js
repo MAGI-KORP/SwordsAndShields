@@ -11,7 +11,7 @@ const path = require("path")
 
 
 const PORT = process.env.PORT || 8080
-const socketPORT = process.env.PORT2 || 4001;
+const socketPORT = 443;
 
 // Route requires
 const user = require('./routes/htmlRoutes')
