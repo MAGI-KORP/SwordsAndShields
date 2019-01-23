@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 // const io = require('socket.io-client')
 // const socket = io()
-const port = 4001
+const port = 80
 if(process.env.PORT) {
     port = process.env.PORT
 }
