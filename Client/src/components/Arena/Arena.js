@@ -143,7 +143,7 @@ class Arena extends Component {
 
     componentDidMount() {
         const { endpoint } = this.state;
-        const socket = socketIOClient(endpoint,{transports:[websocket]});
+        const socket = socketIOClient(endpoint,{transports:['websocket','polling']});
         console.log(socket)
         this.setState({socket : socket})
         socket.on("response", data => {
