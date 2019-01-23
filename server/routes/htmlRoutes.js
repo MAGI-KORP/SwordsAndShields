@@ -1,14 +1,33 @@
-const express = require("express")
+const express = require('express')
 const router = express.Router()
+const User = require('../db/models/users')
+const passport = require('../passport')
 
-const connection = require("../connection/connection.js")
-const bcrypt = require("bcrypt")
-const saltRounds = 10
-const cookieParser = require("cookie-parser")
-const passport = require("passport")
+router.post('/', (req, res) => {
+    console.log('user signup');
 
-const { check, validationResult } = require("express-validator/check")
-const { sanitizeBody } = require("express-validator/filter")
+    const { username, password } = req.body
+    // ADD VALIDATION
+    User.findOne({ username: username }, (err, user) => {
+        if (err) {
+            console.log('User.js post error: ', err)
+        } else if (user) {
+            res.json({
+                error: `Sorry, already a user with the username: ${username}`
+            })
+        }
+        else {
+            const newUser = new User({
+                username: username,
+                password: password
+            })
+            newUser.save((err, savedUser) => {
+                if (err) return res.json(err)
+                res.json(savedUser)
+            })
+        }
+    })
+})
 
 router.post(
     '/login',
@@ -26,26 +45,6 @@ router.post(
         res.send(userInfo);
     }
 )
-
-router.post("/", (req, res) => {
-    const username = req.body.username
-    const password = req.body.password
-    bcrypt.hash(password, saltRounds, function(err, hash) {
-        connection.query("INSERT INTO users (username, password) VALUES (?, ?)", [username, hash], function(err, results, fields) {
-            if (err) throw err
-            connection.query("SELECT LAST_INSERT_ID() as user_id", function(error, results, fields){
-                if (error) throw error
-                const user_id = results[0]
-
-                req.login(user_id, function(err) {
-                    res.send(JSON.stringify(results))
-                })
-            })
-            // res.send(JSON.stringify(results))
-        })
-    })
-    
-})
 
 router.get('/', (req, res, next) => {
     console.log('===== user!!======')
@@ -65,22 +64,5 @@ router.post('/logout', (req, res) => {
         res.send({ msg: 'no user to log out' })
     }
 })
-
-passport.serializeUser((user_id, done) => {
-    done(null, user_id);
-  });
-  
-passport.deserializeUser((user_id, done) => {
-    done(null, user_id);
-});
-
-function authenticationMiddleware () {  
-    return (req, res, next) => {
-        console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
-
-        if (req.isAuthenticated()) return next();
-        console.log("authenticated")
-    }
-}
 
 module.exports = router
