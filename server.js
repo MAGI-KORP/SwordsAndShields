@@ -13,8 +13,8 @@ const path = require("path")
 const PORT = process.env.PORT || 8080
 
 // Route requires
-// const user = require('./routes/htmlRoutes')
-// const api = require("./routes/APIroutes")
+const user = require('./routes/htmlRoutes')
+const api = require("./routes/APIroutes")
 // const indexRoutes = require("./routes/index")
 
 //SocketIO
