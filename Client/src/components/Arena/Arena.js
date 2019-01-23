@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 // const io = require('socket.io-client')
-// const socket = io()  
+// const socket = io()
+const port = 4001
+if(process.env.PORT) {
+    port = process.env.PORT
+}
 
 class Arena extends Component {
     state = {
@@ -9,7 +13,7 @@ class Arena extends Component {
         slot: 0,
         log:[],
         players: [],
-        endpoint: "https://swords-and-shields.herokuapp.com:80",
+        endpoint: ":" + port,
         socket: false,
         one: {
             name: "Colin the Cat-Lord",
