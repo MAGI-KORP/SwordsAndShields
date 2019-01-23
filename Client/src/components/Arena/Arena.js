@@ -12,7 +12,7 @@ class Arena extends Component {
         slot: 0,
         log:[],
         players: [],
-        endpoint: ":" + port,
+        endpoint: ":443",
         socket: false,
         one: {
             name: "Colin the Cat-Lord",
@@ -142,8 +142,8 @@ class Arena extends Component {
     }
 
     componentDidMount() {
-        // const { endpoint } = this.state;
-        const socket = socketIOClient();
+        const { endpoint } = this.state;
+        const socket = socketIOClient(endpoint);
         console.log(socket)
         this.setState({socket : socket})
         socket.on("response", data => {
