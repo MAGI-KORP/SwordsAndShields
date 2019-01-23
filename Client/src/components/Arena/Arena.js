@@ -12,7 +12,7 @@ class Arena extends Component {
         slot: 0,
         log:[],
         players: [],
-        endpoint: ":4001",
+        endpoint: ":443",
         socket: false,
         one: {
             name: "Colin the Cat-Lord",
