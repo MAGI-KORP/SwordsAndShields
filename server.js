@@ -11,7 +11,6 @@ const path = require("path")
 
 
 const PORT = process.env.PORT || 8080
-const socketPORT = process.env.PORT2 || 4001;
 
 // Route requires
 const user = require('./routes/htmlRoutes')
@@ -171,4 +170,4 @@ app.listen(PORT, () => {
 })
 
 // SOCKET SERVER
-server.listen(socketPORT, () => console.log(`Listening on port ${socketPORT}`));
+server.listen(PORT, () => console.log(`Listening on port ${PORT}`));
