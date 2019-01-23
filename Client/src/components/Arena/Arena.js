@@ -3,8 +3,8 @@ import socketIOClient from "socket.io-client";
 // const io = require('socket.io-client')
 // const socket = io()  
 const port = 4001
-if(process.env.PORT) {
-    port = process.env.PORT
+if(process.env.PORT2) {
+    port = process.env.PORT2
 }
 class Arena extends Component {
     state = {
@@ -12,7 +12,7 @@ class Arena extends Component {
         slot: 0,
         log:[],
         players: [],
-        endpoint: ":443",
+        endpoint: ":" + port,
         socket: false,
         one: {
             name: "Colin the Cat-Lord",
