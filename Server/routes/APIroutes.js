@@ -1,12 +1,13 @@
 const express = require("express")
 const router = express.Router()
-const orm = require("../db/orm.js")
+// const orm = require("../db/orm.js")
+const mongoose = require("mongoose")
 
 // ...Add configure ExpressJS
-const app = express();
-app.use ("/", router);
-app.use(express.json ());
-app.use(express.urlencoded({ extended: true }));
+// const app = express();
+// app.use ("/", router);
+// app.use(express.json ());
+// app.use(express.urlencoded({ extended: true }));
 
 router
 // .get("/api/:id", (req, res) =>
@@ -19,21 +20,21 @@ router
 //         res.json(result)
 //     })
 // })
-.get("/getRankings", (req, res) =>
-{
-console.log ("/api/getRankings");
-    orm.getRankings ()
-    .then (function (data)
-    {
-        res.status(200).send(data)
-    })
-    .catch (function (err)
-    {
-        res.status(500).send(err)
-    })
-})
+// .get("/getRankings", (req, res) =>
+// {
+// console.log ("/api/getRankings");
+//     orm.getRankings ()
+//     .then (function (data)
+//     {
+//         res.status(200).send(data)
+//     })
+//     .catch (function (err)
+//     {
+//         res.status(500).send(err)
+//     })
+// })
 const CreateCharacter = require("../db/models/createCharacter")
-const mongoose = require("mongoose")
+
 
 router.post("/", (req, res) => {
   const newCharacter = new CreateCharacter({

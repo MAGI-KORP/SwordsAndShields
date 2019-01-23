@@ -1,4 +1,4 @@
-const orm = require ("./orm.js");
+// const orm = require ("./orm.js");
 
 // orm.incrementLosses ("The Joker")
 // .then (function ()
@@ -14,10 +14,10 @@ const orm = require ("./orm.js");
 // .catch (function (err)
 // {   console.log (err)
 // })
-orm.getCharacterRecord ("Batman")
-.then (function (data)
-{   console.log (JSON.stringify(data, null, 2));
-})
-.catch (function (err)
-{   console.log (err)
-})
+// orm.getCharacterRecord ("Batman")
+// .then (function (data)
+// {   console.log (JSON.stringify(data, null, 2));
+// })
+// .catch (function (err)
+// {   console.log (err)
+// })
