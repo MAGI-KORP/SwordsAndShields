@@ -8,9 +8,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "heroku-postbuild": "cd Client && npm install --only=dev && npm install && npm run build"
   },
-  "proxy": "http://localhost:8080/",
   "author": "Rich D",
   "license": "MIT",
   "dependencies": {
