@@ -133,7 +133,7 @@ io.on("connection", socket => {
 
 // MIDDLEWARE
 app.use(morgan('dev'))
-app.use(express.static(path.join(__dirname, "client", "build")))
+app.use(express.static(path.join(__dirname, "Client", "build")))
 app.use(
 	bodyParser.urlencoded({
 		extended: false
