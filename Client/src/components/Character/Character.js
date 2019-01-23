@@ -1,109 +1,215 @@
 import React, { Component } from 'react';
 import Typed from 'react-typed';
+import { Redirect } from "react-router-dom"
+import axios from "axios"
 
 class Character extends Component {
-
-    state = {
-        name: "Colin the Cat-Lord",
-        level: "5",
-        class: "Rogue",
-        attributes:{
-            strength: "2",
-            defense: "1",
-            evasion: "3"
-        },
-        stats:{
-            wins: "100",
-            losses: "0",
-            ties: "1",
-            damageDealt: "232,456",
-            damageTaken: "-1"
-        },
-        backstory: "Behold, Colin the Cat-Lord, a simple and wayward peasant turned hero after saving his village from bandits! Colin is always accompanied by his two cats, Luca and Zoey, both are known to be quite formidable adversaries in their own right."
+    constructor(){
+        super()
+        this.state = {
+            redirectTo: null,
+            statsRemaining: 5,
+            firstName: "",
+            surname: "",
+            strength: 10,
+            defense: 10,
+            evasion: 10
+    
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.statIncrease = this.statIncrease.bind(this)
+        this.statDecrease = this.statDecrease.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
+    
+    
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    handleSubmit(event) {
+        event.preventDefault()
+        axios.post("/api/", {
+            username: this.state.username,
+            firstName: this.state.firstName,
+            surname: this.state.surname,
+            strength: this.state.strength,
+            defense: this.state.defense,
+            evasion: this.state.evasion
+        }).then(response => {
+            console.log("Sending new Character")
+            if(response.status === 200) {
+                this.setState({
+                    redirectTo: "/character"
+                })
+            } else {
+                console.log("something went wrong")
+            }
+        })
+    }
+
+    
+
+    statIncrease(event) {
+       if(this.state.statsRemaining > 0) {
+            if(event.target.id === "strength") {
+                this.setState({
+                strength: this.state.strength + 1,
+                statsRemaining: this.state.statsRemaining - 1
+                })
+            } else if (event.target.id === "defense") {
+                this.setState({
+                    defense: this.state.defense + 1,
+                    statsRemaining: this.state.statsRemaining - 1
+                })
+            } else if (event.target.id === "evasion") {
+                this.setState({
+                    evasion: this.state.evasion + 1,
+                    statsRemaining: this.state.statsRemaining - 1
+                })
+            }
+       } else {
+           console.log("Out of points")
+       }
+    }
+
+    statDecrease(event) {
+        if(this.state.statsRemaining < 5) {
+             if(event.target.id === "strength") {
+                 this.setState({
+                 strength: this.state.strength - 1,
+                 statsRemaining: this.state.statsRemaining + 1
+                 })
+             } else if (event.target.id === "defense") {
+                 this.setState({
+                     defense: this.state.defense - 1,
+                     statsRemaining: this.state.statsRemaining + 1
+                 })
+             } else if (event.target.id === "evasion") {
+                 this.setState({
+                     evasion: this.state.evasion - 1,
+                     statsRemaining: this.state.statsRemaining + 1
+                 })
+             }
+        } else {
+            console.log("Cannot subtract any more points")
+        }
+     }
+ 
+
     render() {
-        return (
+            return(
                 <div className="row">
+                <div className="col-3"></div>            
                     <div className="col-6">
-                        <div>
-                            <h1 className="characterHeader"><Typed strings={["[Character]"]} typeSpeed={30} showCursor={false} /></h1>
-                            <h2 className="characterKey">
-                                <Typed strings={["Name: "]} typeSpeed={30} startDelay={1000} showCursor={false}></Typed>
-                                <span id="characterValue"> <Typed strings={[this.state.name]} typeSpeed={30} startDelay={3000} showCursor={false}></Typed></span>
-                            </h2>
+                        <form>
+                        <h2 className="main">Create A Character</h2>
+                            <div className="form-row">                      
+                                <div className="form-group col-6">
+                                    <label htmlFor="firstName">First Name</label>
+                                    <input
+                                        type="text" 
+                                        className="form-control"
+                                        name="firstName" 
+                                        id="firstName" 
+                                        value={this.state.firstName} 
+                                        onChange={this.handleChange} />
+                                </div>
+                                <div className="form-group col-6">
+                                    <label htmlFor="surname">Surname</label>
+                                    <input 
+                                        type="text" 
+                                        className="form-control"
+                                        name="surname" 
+                                        id="surname"  
+                                        value={this.state.surname} 
+                                        onChange={this.handleChange} />
+                                </div>
 
-                            <h2 className="characterKey">
-                                <Typed strings={["Level: "]} typeSpeed={30} startDelay={1000} showCursor={false}></Typed>
-                                <span id="characterValue"> <Typed strings={[this.state.level]} typeSpeed={30} startDelay={4000} showCursor={false}></Typed></span>
-                            </h2>
+                                <div className="col-12">
+                                    <h2>Stat Points Remaining: {this.state.statsRemaining}</h2>
+                                </div>
+
+                                <div className="col-4">
+                                    <h2>Strength</h2>
+                                    <div className="row">
+                                        <div className=" form-group col-4 mx-auto">
+                                            <label htmlFor="strength"></label>
+                                            <button type="button" className="btn btn-secondary" id="strength" onClick={this.statIncrease}>+</button>
+                                            <div>
+                                                {this.state.strength}
+                                            </div>
+                                            <button type="button" className="btn btn-secondary" id="strength" onClick={this.statDecrease}>-</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="col-4">
+                                    <h2>Defense</h2>
+                                    <div className="row">
+                                        <div className=" form-group col-4 mx-auto">
+                                        <label htmlFor="defense"></label>
+                                        <button type="button" className="btn btn-secondary" id="defense" onClick={this.statIncrease}>+</button>
+                                        <div>
+                                            {this.state.defense}
+                                        </div>
+                                        <button type="button" className="btn btn-secondary" id="defense" onClick={this.statDecrease}>-</button>
+                                    </div>
+                                </div>
+                                </div>
+                                <div className="col-4">
+                                    <h2>Evasion</h2>
+                                    <div className="row">
+                                        <div className="form-group col-4 mx-auto">
+                                            <label htmlFor="evasion"></label>
+                                            <button type="button" className="btn btn-secondary" id="evasion" onClick={this.statIncrease}>+</button>
+                                            <div>
+                                                {this.state.evasion}
+                                            </div>
+                                            <button type="button" className="btn btn-secondary" id="evasion" onClick={this.statDecrease}>-</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                
+                            </div>
+                            <button 
                             
-                            <h2 className="characterKey">
-                                <Typed strings={["Class: "]} typeSpeed={30} startDelay={1000} showCursor={false}></Typed>
-                                <span id="characterValue"> <Typed strings={[this.state.class]} typeSpeed={30} startDelay={4500} showCursor={false}></Typed></span>
-                            </h2>
-        
-                            <br/>
-
-                            <h2 className="characterKey">
-                                <Typed strings={["Strength: "]} typeSpeed={25} startDelay={2000} showCursor={false}></Typed>
-                                <span id="characterValue"> <Typed strings={[this.state.attributes.strength]} typeSpeed={50} startDelay={5000} showCursor={false}></Typed></span>
-                            </h2>
-
-                            <h2 className="characterKey">
-                                <Typed strings={["Defense: "]} typeSpeed={30} startDelay={2000} showCursor={false}></Typed>
-                                <span id="characterValue"> <Typed strings={[this.state.attributes.defense]} typeSpeed={50} startDelay={5500} showCursor={false}></Typed></span>
-                            </h2>
-
-                            <h2 className="characterKey">
-                                <Typed strings={["Evasion: "]} typeSpeed={30} startDelay={2000} showCursor={false}></Typed>
-                                <span id="characterValue"> <Typed strings={[this.state.attributes.evasion]} typeSpeed={50} startDelay={6000} showCursor={false}></Typed></span>
-                            </h2>
-                            <br/>
-                            <h2 className="characterKey">
-                                <Typed strings={["Backstory: "]} typeSpeed={30} startDelay={12000} showCursor={false}></Typed><br/>
-                                <span id="characterValue"> <Typed strings={[this.state.backstory]} typeSpeed={30} startDelay={13000} showCursor={false}></Typed></span>
-                            </h2>
-                        </div>
-                        
+                                type="submit"
+                                onClick={this.handleSubmit}>Create Character</button>
+                        </form>
                     </div>
-                    <div className="col-6">
-                        <div>
-                            <h1 className="characterHeader"><Typed strings={["[Player Statistics]"]} typeSpeed={30} startDelay={6500} showCursor={false} /></h1>
-                            <h2 className="characterKey">
-                                <Typed strings={["Wins: "]} typeSpeed={30} startDelay={7500} showCursor={false}></Typed>
-                                <span id="characterValue"> <Typed strings={[this.state.stats.wins]} typeSpeed={30} startDelay={9500} showCursor={false}></Typed></span>
-                            </h2>
-                            <h2 className="characterKey">
-                                <Typed strings={["Losses: "]} typeSpeed={20} startDelay={7500} showCursor={false}></Typed>
-                                <span id="characterValue"> <Typed strings={[this.state.stats.losses]} typeSpeed={30} startDelay={10000} showCursor={false}></Typed></span>
-                            </h2>
-                            <h2 className="characterKey">
-                                <Typed strings={["Ties: "]} typeSpeed={30} startDelay={7500} showCursor={false}></Typed>
-                                <span id="characterValue"> <Typed strings={[this.state.stats.ties]} typeSpeed={30} startDelay={10500} showCursor={false}></Typed></span>
-                            </h2>
-                            <br/>
-                            <h2 className="characterKey">
-                                <Typed strings={["Damage Dealt: "]} typeSpeed={30} startDelay={8500} showCursor={false}></Typed>
-                                <span id="characterValue"> <Typed strings={[this.state.stats.damageDealt]} typeSpeed={30} startDelay={11000} showCursor={false}></Typed></span>
-                            </h2>
-                            <h2 className="characterKey">
-                                <Typed strings={["Damage Taken: "]} typeSpeed={30} startDelay={8500} showCursor={false}></Typed>
-                                <span id="characterValue"> <Typed strings={[this.state.stats.damageTaken]} typeSpeed={30} startDelay={11500} showCursor={false}></Typed></span>
-                            </h2>
-                        </div>
-                    </div>
+                    <div className="col-3"></div>  
                 </div>
-        )
+            )
+        }
     }
-}
+
 
 export default Character
 
-            // <h1>
-            //     <Typed 
-            //         strings={["This is the Character Sheet Page!"]} 
-            //         typeSpeed={100}
-            //         startDelay={0}
-            //         showCursor={true} 
-            //     />
-            // </h1>
+
+
+
+
+    //     state = {
+//         name: "Colin the Cat-Lord",
+//         level: "5",
+//         class: "Rogue",
+//         attributes:{
+//             strength: "2",
+//             defense: "1",
+//             evasion: "3"
+//         },
+//         stats:{
+//             wins: "100",
+//             losses: "0",
+//             ties: "1",
+//             damageDealt: "232,456",
+//             damageTaken: "-1"
+//         },
+//         backstory: "Behold, Colin the Cat-Lord, a simple and wayward peasant turned hero after saving his village from bandits! Colin is always accompanied by his two cats, Luca and Zoey, both are known to be quite formidable adversaries in their own right."
+//     }

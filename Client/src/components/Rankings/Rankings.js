@@ -1,17 +1,39 @@
 import React, { Component } from 'react';
-import Typed from 'react-typed';
+import PlayerRanking from './PlayerRanking';
 
-class Rankings extends Component {
-    render() {
-        return (
-            <h1>
-                <Typed 
-                    strings={["This is the Player Rankings Page!"]} 
-                    typeSpeed={100}
-                    startDelay={0}
-                    showCursor={true} 
-                />
-            </h1>
+const axios = require("axios");
+
+class Rankings extends Component
+{   state =
+    {   standings: []
+    }
+
+    componentDidMount = () =>
+    {   // when the component mounts and is React is ready, retrieve ranking data from the server
+
+        axios.get("/api/getRankings")
+        .then (data =>
+        {   
+            this.setState ({ standings: data.data })
+        })
+        .catch (err =>
+        {   console.log (err);
+        })
+    }
+    
+    render()
+    {
+                return (
+            <div className="standing-div">
+                { this.state.standings.map(player =>
+                (   <PlayerRanking
+                        name = { player.name }
+                        wins = { player.wins }
+                        losses = { player.losses }
+                        percent = { player.percent }
+                    />
+                ))}
+            </div>
         )
     }
 }
