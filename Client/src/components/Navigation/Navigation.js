@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import Typed from 'react-typed';
 import { Link } from 'react-router-dom'
+import { Redirect } from "react-router-dom"
 import axios from "axios"
 
 class Navigation extends Component {
     constructor() {
         super()
+        this.state = {
+            redirectTo: null
+        }
         
         this.logout = this.logout.bind(this)
+        this.login = this.login.bind(this)
     }
 
     logout(event) {
@@ -24,6 +29,18 @@ class Navigation extends Component {
         }).catch(error => {
             console.log('Logout error')
         })
+      }
+
+      login(event) {
+          axios.get('/user/login').then(response => {
+              if(response.status === 200) {
+                  this.setState({
+                      redirectTo: "/user/login" 
+                  })
+              }
+          }).catch(error => {
+              console.log("redirect failed")
+          })
       }
 
 
@@ -61,14 +78,25 @@ class Navigation extends Component {
                                 startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 18200}
                             />
                         </Link>
-                        <Link className = "nav-link" to = "#" onClick={this.logout}>
+                         { loggedIn ?  ( <Link className = "nav-link" to = "#" onClick={this.logout}>
                             <Typed 
                                 strings={['[Logout]']} 
                                 typeSpeed={window.location.href !== "http://localhost:3000/" ? 0 : 75}
                                 showCursor={false} 
                                 startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 19200}
                             />
+                         </Link> ) : (
+                         <Link className = "nav-link" to = "#" to = "/user/login">
+                            <Typed 
+                                strings={['[Login]']} 
+                                typeSpeed={window.location.href !== "http://localhost:3000/" ? 0 : 75}
+                                showCursor={false} 
+                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 19200}
+                            />
                         </Link>
+                        
+                            )}
+
                     </div>
                 </div>
             // </nav>
