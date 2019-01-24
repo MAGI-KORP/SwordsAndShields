@@ -29,11 +29,11 @@ html{
 
 .App-Main {
   margin-top: 1vh;
-  height: 70vh
+  height: 75vh
 }
 
 .App-Footer {
-  height:15vh
+  height:10vh
 }
 
 .App-link {
@@ -81,6 +81,10 @@ button:hover {
   width: 100%;
   text-align: center;
   border-radius: .25rem
+}
+
+.col-4 {
+  text-align:center
 }
 
 .combatDisplayHeader{
