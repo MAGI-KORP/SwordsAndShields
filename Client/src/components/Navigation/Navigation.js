@@ -54,10 +54,19 @@ class Navigation extends Component {
                     <div className="col-12">
                         <Link className="nav-link" to = "/character">
                             <Typed 
-                                strings={['[Character]']} 
+                                strings={['[Create Character]']} 
                                 typeSpeed={window.location.href !== "http://localhost:3000/" ? 0 : 75} 
                                 showCursor={false}
                                 startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 16200}
+                            />
+                        </Link>
+                        
+                        <Link className = "nav-link" to = "/mycharacter">
+                            <Typed 
+                                strings={['[My Characters]']} 
+                                typeSpeed={window.location.href !== "http://localhost:3000/" ? 0 : 75}
+                                showCursor={false} 
+                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 17800}
                             />
                         </Link>
 
@@ -66,7 +75,7 @@ class Navigation extends Component {
                                 strings={['[Arena]']} 
                                 typeSpeed={window.location.href !== "http://localhost:3000/" ? 0 : 75}
                                 showCursor={false} 
-                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 17200}
+                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 18800}
                             />
                         </Link>
 
@@ -75,15 +84,16 @@ class Navigation extends Component {
                                 strings={['[Rankings]']} 
                                 typeSpeed={window.location.href !== "http://localhost:3000/" ? 0 : 75}
                                 showCursor={false} 
-                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 18200}
+                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 19800}
                             />
                         </Link>
+                    
                          { loggedIn ?  ( <Link className = "nav-link" to = "#" onClick={this.logout}>
                             <Typed 
                                 strings={['[Logout]']} 
                                 typeSpeed={window.location.href !== "http://localhost:3000/" ? 0 : 75}
                                 showCursor={false} 
-                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 19200}
+                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 20800}
                             />
                          </Link> ) : (
                          <Link className = "nav-link" to = "#" to = "/user/login">
@@ -91,7 +101,7 @@ class Navigation extends Component {
                                 strings={['[Login]']} 
                                 typeSpeed={window.location.href !== "http://localhost:3000/" ? 0 : 75}
                                 showCursor={false} 
-                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 19200}
+                                startDelay={window.location.href !== "http://localhost:3000/" ? 0 : 20800}
                             />
                         </Link>
                         
