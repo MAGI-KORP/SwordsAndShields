@@ -24,18 +24,13 @@ class CharDisplay extends Component {
       console.log("componenet mounted")
       axios.get("/api/please")
       .then(response => {
-        if(response.data === 200) {
-            this.setState({
-                firstName: response.data.firstName,
-                strength: response.data.strength,
-                defense: response.data.defense,
-                evasion: response.data.evasion,
-                backstory: response.data.backstory
-                })
-        } else {
-            console.log("No Character Found")
-        }
-        
+        this.setState({
+            firstName: response.data.firstName,
+            strength: response.data.strength,
+            defense: response.data.defense,
+            evasion: response.data.evasion,
+            backstory: response.data.backstory
+            })
       })
     }
     

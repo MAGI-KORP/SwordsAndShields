@@ -61,5 +61,13 @@ router.get("/please", (req, res) => {
   }) 
 })
 
+router.get("/delete", (req, res) => {
+  CreateCharacter.findOneAndRemove( {username: req.session.passport.user._id }, (err, characterInfo) => {
+    res.json(characterInfo)
+    if (err) throw err
+    console.log("character deleted")
+  })
+})
+
 
 module.exports = router
