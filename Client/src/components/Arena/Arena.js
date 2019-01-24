@@ -39,7 +39,7 @@ class Arena extends Component {
             backstory: ""
         },
         two: {
-            firstName: "Bad-Guy McNoobson",
+            firstName: "",
             level: "1",
             class: "Noob",
             attributes:{
@@ -47,7 +47,7 @@ class Arena extends Component {
                 defense: "2",
                 evasion: "1"
             },
-            backstory: "Ah, the great Bad-Guy McNoobson has graduated from Noob Academy, equipped with sword and shield in hand, he begins his first day at the workplace! Let's see how it goes"
+            backstory: ""
         }
     }
 
