@@ -106,7 +106,7 @@ class Arena extends Component {
                             </h2>
                         </div>
                         
-                        <div style={(this.state.slot === 1) ? {display: "flex"} : {display: "none"}} className="row">
+                        <div style={(this.state.self.firstName === this.state.one.firstName) ? {display: "flex"} : {display: "none"}} className="row">
                             <div className="col-4">
                                 <button onClick={() => {this.makeMove("Player 1", "slash")}}>Slash</button>
                             </div>
@@ -134,7 +134,7 @@ class Arena extends Component {
                             </h2>
                         </div>
                         
-                        <div style={(this.state.slot === 2) ? {display: "flex"} : {display: "none"}} className="row">
+                        <div style={(this.state.self.firstName === this.state.two.firstName) ? {display: "flex"} : {display: "none"}} className="row">
                             <div className="col-4">
                                 <button onClick={() => {this.makeMove("Player 2", "slash")}}>Slash</button>
                             </div>
@@ -169,7 +169,7 @@ class Arena extends Component {
         
         const { endpoint } = this.state;
         const socket = socketIOClient(endpoint,{transports:['websocket','polling']});
-        setTimeout(socket.emit("newPlayer", this.state.self),3000)
+        setTimeout(() => {socket.emit("newPlayer", this.state.self)},3000)
         this.setState({socket : socket})
         socket.on("response", data => {
                 console.log(data.players)
