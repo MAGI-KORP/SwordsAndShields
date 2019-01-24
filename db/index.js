@@ -3,7 +3,7 @@ mongoose.Promise = global.Promise
 
 //your local database url
 //27017 is the default mongoDB port
-const uri = MONGODB_URI || 'mongodb://localhost:27017/swords-and-shields' 
+const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/swords-and-shields' 
 
 mongoose.connect(uri).then(
     () => { 
