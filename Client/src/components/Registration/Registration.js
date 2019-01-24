@@ -47,6 +47,9 @@ class Registration extends Component {
     }
 
     render() {
+        if (this.state.redirectTo) {
+            return <Redirect to={{ pathname: this.state.redirectTo }} />
+        } else {
             return (
                 <div className="row">
                     <div className="col-3"></div>            
@@ -86,7 +89,8 @@ class Registration extends Component {
                     <div className="col-3"></div>  
                 </div>
 
-        )
+            )
+        }
     }
 }
 

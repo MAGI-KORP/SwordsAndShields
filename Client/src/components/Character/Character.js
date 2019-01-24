@@ -177,21 +177,22 @@ class Character extends Component {
                                 </div>
                                 
                             </div>
-                            <button 
                             
-                                type="submit"
-                                onClick={this.handleSubmit}>Create Character</button>
-                            
-                            <div className="form-group col-12">
-                                <label htmlFor="backstory">First Name</label>
-                                <input
-                                    type="text" 
+                            <div className="form-group col-12 justify-content-center">
+                                <label htmlFor="backstory">Backstory</label>
+                                <textarea
+                                    style={{height:100 + "px"}}
+                                    type="text"
                                     className="form-control"
                                     name="backstory" 
                                     id="backstory" 
                                     value={this.state.backstory} 
                                     onChange={this.handleChange} />
                             </div>
+                            <button 
+                            
+                                type="submit"
+                                onClick={this.handleSubmit}>Create Character</button>
                         
                         </form>
                     </div>
