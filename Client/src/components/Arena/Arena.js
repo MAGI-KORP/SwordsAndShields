@@ -169,7 +169,7 @@ class Arena extends Component {
         
         const { endpoint } = this.state;
         const socket = socketIOClient(endpoint,{transports:['websocket','polling']});
-        setTimeout(() => {socket.emit("newPlayer", this.state.self)},3000)
+        setTimeout(() => {socket.emit("newPlayer", this.state.self)
         this.setState({socket : socket})
         socket.on("response", data => {
                 console.log(data.players)
@@ -188,7 +188,7 @@ class Arena extends Component {
                 }
                 this.render()
         });
-
+    }, 3000)
         socket.on("results", data => {
             console.log(data)
             var newHealth1 = (this.state.health1 - data.damage2).toFixed(2)
