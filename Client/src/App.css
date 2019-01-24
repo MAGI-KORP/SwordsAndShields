@@ -83,6 +83,10 @@ button:hover {
   border-radius: .25rem
 }
 
+.col-4 {
+  text-align:center
+}
+
 .combatDisplayHeader{
   text-align:center;
   border-bottom: white dotted 3px;

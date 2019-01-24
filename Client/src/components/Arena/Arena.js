@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
-// const io = require('socket.io-client')
-// const socket = io()  
+import axios from "axios"
+
 const port = 4001
 if(process.env.PORT2) {
     port = process.env.PORT2
@@ -14,10 +14,12 @@ class Arena extends Component {
         players: [],
         endpoint: ":443",
         socket: false,
-        one: {
-            name: "Colin the Cat-Lord",
+        health1: 15,
+        health2: 15,
+        self: {
+            firstName: "Colin the Cat-Lord",
             level: "5",
-            class: "Rogue",
+            class: "Hero",
             attributes:{
                 strength: "2",
                 defense: "1",
@@ -25,10 +27,21 @@ class Arena extends Component {
             },
             backstory: "Behold, Colin the Cat-Lord, a simple and wayward peasant turned hero after saving his village from bandits! Colin is always accompanied by his two cats, Luca and Zoey, both are known to be quite formidable adversaries in their own right."
         },
+        one: {
+            firstName: "",
+            level: "5",
+            class: "Hero",
+            attributes:{
+                strength: "2",
+                defense: "1",
+                evasion: "3"
+            },
+            backstory: ""
+        },
         two: {
-            name: "Bad-Guy McNoobson",
+            firstName: "Bad-Guy McNoobson",
             level: "1",
-            class: "Warrior",
+            class: "Noob",
             attributes:{
                 strength: "3",
                 defense: "2",
@@ -87,8 +100,8 @@ class Arena extends Component {
             <div>
                 <div className="row combatantDisplay">
                     <div className="col-4">
-                        <div style={{height: "60vh"}}>
-                            <h1 className="combatDisplayHeader">{this.state.one.name}</h1>
+                        <div style={{height: "50vh"}}>
+                            <h1 className="combatDisplayHeader">{this.state.one.firstName}</h1>
                             <h2>Class: <span>{this.state.one.class}</span></h2>
                             <h2>Level: <span>{this.state.one.level}</span></h2>
                             <h2>Backstory: <br/>
@@ -98,24 +111,25 @@ class Arena extends Component {
                         
                         <div style={(this.state.slot === 1) ? {display: "flex"} : {display: "none"}} className="row">
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 1", "attack")}}>Attack</button>
+                                <button onClick={() => {this.makeMove("Player 1", "slash")}}>Slash</button>
                             </div>
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 1", "defend")}}>Defend</button>
+                                <button onClick={() => {this.makeMove("Player 1", "pierce")}}>Pierce</button>
                             </div>
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 1", "evade")}}>Evade</button>
+                                <button onClick={() => {this.makeMove("Player 1", "crush")}}>Crush</button>
                             </div>
                         </div>                                                           
                     </div>
                     <div className="col-4">
                         <h1 className="combatDisplayHeader">Combat Log</h1>
                         <h2 id="log">{this.display(this.state.log)}</h2>
+                        <h2>Player One: {this.state.health1} Player Two: {this.state.health2}</h2>
                         <h3 id="playerList">Players In Lobby:{this.display(this.state.players)}</h3>
                     </div>
                     <div className="col-4">
-                        <div style={{height: "60vh"}}>
-                            <h1 className="combatDisplayHeader">{this.state.two.name}</h1>
+                        <div style={{height: "50vh"}}>
+                            <h1 className="combatDisplayHeader">{this.state.two.firstName}</h1>
                             <h2>Class: <span>{this.state.two.class}</span></h2>
                             <h2>Level: <span>{this.state.two.level}</span></h2>
                             <h2>Backstory: <br/>
@@ -125,15 +139,16 @@ class Arena extends Component {
                         
                         <div style={(this.state.slot === 2) ? {display: "flex"} : {display: "none"}} className="row">
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 2", "attack")}}>Attack</button>
+                                <button onClick={() => {this.makeMove("Player 2", "slash")}}>Slash</button>
                             </div>
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 2", "defend")}}>Defend</button>
+                                <button onClick={() => {this.makeMove("Player 2", "pierce")}}>Pierce</button>
                             </div>
                             <div className="col-4">
-                                <button onClick={() => {this.makeMove("Player 2", "evade")}}>Evade</button>
+                                <button onClick={() => {this.makeMove("Player 2", "crush")}}>Crush</button>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -142,9 +157,22 @@ class Arena extends Component {
     }
 
     componentDidMount() {
+        axios.get("/api/please")
+        .then(response => {
+            this.setState({
+                self:{
+                    firstName: response.data.firstName,
+                    backstory: response.data.backstory,
+                    strength: response.data.strength,
+                    defense: response.data.defense,
+                    evasion: response.data.evasion
+                }
+            })
+        })
+        
         const { endpoint } = this.state;
         const socket = socketIOClient(endpoint,{transports:['websocket','polling']});
-        console.log(socket)
+        socket.emit("newPlayer", this.state.self)
         this.setState({socket : socket})
         socket.on("response", data => {
                 if(!this.state.username){
@@ -156,10 +184,43 @@ class Arena extends Component {
                     return element === this.username
                     
                 },this.state)
-                console.log(index)
                 this.setState({slot: (index + 1)})
+                console.log(this.state.slot)
+                if(this.state.slot === 1) {
+                    this.setState({one: this.state.self})
+                }
+                else if(this.state.slot === 2){
+                    this.setState({two: this.state.self})
+                }
                 this.render()
         });
+
+        
+
+        socket.on("results", data => {
+            console.log(data)
+            var newHealth1 = (this.state.health1 - data.damage2).toFixed(2)
+            var newHealth2 = (this.state.health2 - data.damage1).toFixed(2)
+            if(newHealth1 < 0 && newHealth2 < 0){
+                socket.emit("winner", {tie: true})
+                return;
+            }
+            if(newHealth1 < 0){
+                newHealth1 = 0
+                socket.emit("winner", {winner: this.state.two, loser: this.state.one})
+            }
+            if(newHealth2 < 0){
+                newHealth2 = 0
+                socket.emit("winner", {winner: this.state.one, loser: this.state.two})
+            }      
+            this.setState({health1: newHealth1, health2: newHealth2})
+            
+        })
+
+        socket.on("newGame", () => {
+            this.setState({health1: 15, health2: 15})
+            this.render()
+        })
 
         socket.on("battleLog", data => {
             console.log(data.log)
