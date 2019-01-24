@@ -9,11 +9,7 @@ class Arena extends Component {
         slot: 0,
         log:[],
         players: [],
-<<<<<<< HEAD
-        endpoint: ":443",
-=======
         endpoint: "https://swordsandsockets.herokuapp.com/",
->>>>>>> ac0da9a8b0619f271e469840f943483ad52f87f1
         socket: false,
         health1: 15,
         health2: 15,
