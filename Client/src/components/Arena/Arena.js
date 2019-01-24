@@ -217,7 +217,13 @@ class Arena extends Component {
 
         socket.on("newGame", data => {
             console.log(data)
-            this.setState({one: data[0], two: data[1]})
+            if(!data[1]){
+                this.setState({one: data[0]})
+                this.setState({two: {}})
+            }
+            else{
+                this.setState({one: data[0], two: data[1]})
+            }
             this.setState({health1: 15, health2: 15})
             this.render()
         })
