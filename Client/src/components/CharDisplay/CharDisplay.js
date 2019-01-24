@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Typed from 'react-typed';
-import { Redirect } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 import axios from "axios"
 
 class CharDisplay extends Component {
@@ -24,13 +24,18 @@ class CharDisplay extends Component {
       console.log("componenet mounted")
       axios.get("/api/please")
       .then(response => {
-        this.setState({
-          firstName: response.data.firstName,
-          strength: response.data.strength,
-          defense: response.data.defense,
-          evasion: response.data.evasion,
-          backstory: response.data.backstory
-        })
+        if(response.data === 200) {
+            this.setState({
+                firstName: response.data.firstName,
+                strength: response.data.strength,
+                defense: response.data.defense,
+                evasion: response.data.evasion,
+                backstory: response.data.backstory
+                })
+        } else {
+            console.log("No Character Found")
+        }
+        
       })
     }
     
@@ -53,7 +58,10 @@ class CharDisplay extends Component {
 
                   <p>Backstory: { this.state.backstory }</p>
 
+
+                    <Link className="newCharacter" to="/character" style={{ color: "white" }}>[Create a New Character]</Link>
                 </div>
+            
             )
         }
     }

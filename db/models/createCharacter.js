@@ -45,6 +45,16 @@ const characterSchema = new Schema({
     type: String,
     unique: false,
     required: false
+  },
+  wins: {
+    type: Number,
+    unique: false,
+    required: false
+  },
+  losses: {
+    type: Number,
+    unique: false,
+    required: false
   }
 })
 

@@ -45,7 +45,9 @@ router.post("/", (req, res) => {
     strength: req.body.strength,
     defense: req.body.defense,
     evasion: req.body.evasion,
-    backstory: req.body.backstory
+    backstory: req.body.backstory,
+    wins: req.body.wins,
+    losses: req.body.losses
   }).save((err, savedChar) => {
     if (err) res.json(err)
     console.log(savedChar)

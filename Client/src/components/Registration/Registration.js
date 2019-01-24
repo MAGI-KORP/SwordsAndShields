@@ -55,7 +55,7 @@ class Registration extends Component {
                     <div className="col-3"></div>            
                     <div className="col-6">
                         <form>
-                        <h2 className="main">Account Information</h2>
+                        <h2 className="main">Register a Brand New Account:</h2>
                             <div className="form-row">                      
                                 <div className="form-group col-12">
                                     <label htmlFor="username">Username:</label>

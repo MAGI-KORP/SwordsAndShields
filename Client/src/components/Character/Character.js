@@ -14,7 +14,9 @@ class Character extends Component {
             strength: 10,
             defense: 10,
             evasion: 10,
-            backstory: ""
+            backstory: "",
+            wins: 0,
+            losses: 0
     
         }
         this.handleChange = this.handleChange.bind(this)
@@ -37,7 +39,9 @@ class Character extends Component {
             strength: this.state.strength,
             defense: this.state.defense,
             evasion: this.state.evasion,
-            backstory: this.state.backstory
+            backstory: this.state.backstory,
+            wins: this.state.wins,
+            losses: this.state.losses
         }).then(response => {
             console.log("Sending new Character")
             if(response.status === 200) {
