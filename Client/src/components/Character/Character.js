@@ -33,13 +33,12 @@ class Character extends Component {
     handleSubmit(event) {
         event.preventDefault()
         axios.post("/api/", {
-            username: this.state.username,
             firstName: this.state.firstName,
             surname: this.state.surname,
             strength: this.state.strength,
             defense: this.state.defense,
             evasion: this.state.evasion,
-            backstroy: this.state.backstory
+            backstory: this.state.backstory
         }).then(response => {
             console.log("Sending new Character")
             if(response.status === 200) {
@@ -182,13 +181,14 @@ class Character extends Component {
                             
                                 type="submit"
                                 onClick={this.handleSubmit}>Create Character</button>
+                            
                             <div className="form-group col-12">
-                                <label htmlFor="firstName">First Name</label>
+                                <label htmlFor="backstory">First Name</label>
                                 <input
                                     type="text" 
                                     className="form-control"
-                                    name="firstName" 
-                                    id="firstName" 
+                                    name="backstory" 
+                                    id="backstory" 
                                     value={this.state.backstory} 
                                     onChange={this.handleChange} />
                             </div>

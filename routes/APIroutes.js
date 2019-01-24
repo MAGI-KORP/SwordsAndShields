@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 // const orm = require("../db/orm.js")
 const mongoose = require("mongoose")
+const passport = require("passport")
 
 // ...Add configure ExpressJS
 // const app = express();
@@ -9,7 +10,6 @@ const mongoose = require("mongoose")
 // app.use(express.json ());
 // app.use(express.urlencoded({ extended: true }));
 
-router
 // .get("/api/:id", (req, res) =>
 // {
 //     connection.query("SELECT id, name FROM characters WHERE ?", {
@@ -37,21 +37,24 @@ const CreateCharacter = require("../db/models/createCharacter")
 
 
 router.post("/", (req, res) => {
+  console.log(req)
   const newCharacter = new CreateCharacter({
-    username: req.body.username,
+    username: req.session.passport.user._id,
     firstName: req.body.firstName,
     surname: req.body.surname,
     strength: req.body.strength,
     defense: req.body.defense,
-    evasion: req.body.evasion
+    evasion: req.body.evasion,
+    backstory: req.body.backstory
   }).save((err, savedChar) => {
     if (err) res.json(err)
+    console.log(savedChar)
     res.json(savedChar)
   })
 })
 
 router.get("/please", (req, res) => {
-  CreateCharacter.findOne({firstName: "hggj" }, (err, characterInfo) => {
+  CreateCharacter.findOne( {username: req.session.passport.user._id }, (err, characterInfo) => {
     res.json(characterInfo)
   }) 
 })

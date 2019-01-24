@@ -13,7 +13,8 @@ class CharDisplay extends Component {
             surname: "",
             strength: 10,
             defense: 10,
-            evasion: 10
+            evasion: 10,
+            backstory: ""
         }
         this.handleChange = this.handleChange.bind(this)
         this.componentDidMount = this.componentDidMount.bind(this)
@@ -27,7 +28,8 @@ class CharDisplay extends Component {
           firstName: response.data.firstName,
           strength: response.data.strength,
           defense: response.data.defense,
-          evasion: response.data.evasion
+          evasion: response.data.evasion,
+          backstory: response.data.backstory
         })
       })
     }
@@ -48,6 +50,8 @@ class CharDisplay extends Component {
                   <p>STR: { this.state.strength } </p>
                   <p>DEF: { this.state.defense }</p>
                   <p>EVA: { this.state.evasion }</p>
+
+                  <p>Backstory: { this.state.backstory }</p>
 
                 </div>
             )

@@ -13,7 +13,7 @@ const characterSchema = new Schema({
    username: {
      type: String,
      unique: false,
-     required: true
+     required: false
    },
   surName: { 
     type: String, 
@@ -34,7 +34,7 @@ const characterSchema = new Schema({
   defense: { 
     type: Number, 
     unique: false, 
-    required: true 
+    required: false
   },
   evasion: { 
     type: Number, 
@@ -44,7 +44,7 @@ const characterSchema = new Schema({
   backstory: {
     type: String,
     unique: false,
-    required: true
+    required: false
   }
 })
 
