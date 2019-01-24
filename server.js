@@ -66,7 +66,7 @@ function newGame() {
     activeGame = true
   }
   sendLog()
-  io.emit("newGame", players)
+  io.emit("newGame", playerObjs)
 }
 
 function endGame(winner, loser){

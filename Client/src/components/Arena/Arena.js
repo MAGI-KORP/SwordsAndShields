@@ -195,8 +195,6 @@ class Arena extends Component {
                 this.render()
         });
 
-        
-
         socket.on("results", data => {
             console.log(data)
             var newHealth1 = (this.state.health1 - data.damage2).toFixed(2)
@@ -217,7 +215,8 @@ class Arena extends Component {
             
         })
 
-        socket.on("newGame", () => {
+        socket.on("newGame", data => {
+            this.setState({one: data[0], two: data[1]})
             this.setState({health1: 15, health2: 15})
             this.render()
         })
