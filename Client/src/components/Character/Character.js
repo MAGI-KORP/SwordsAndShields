@@ -13,7 +13,8 @@ class Character extends Component {
             surname: "",
             strength: 10,
             defense: 10,
-            evasion: 10
+            evasion: 10,
+            backstory: ""
     
         }
         this.handleChange = this.handleChange.bind(this)
@@ -37,7 +38,8 @@ class Character extends Component {
             surname: this.state.surname,
             strength: this.state.strength,
             defense: this.state.defense,
-            evasion: this.state.evasion
+            evasion: this.state.evasion,
+            backstroy: this.state.backstory
         }).then(response => {
             console.log("Sending new Character")
             if(response.status === 200) {
@@ -180,6 +182,17 @@ class Character extends Component {
                             
                                 type="submit"
                                 onClick={this.handleSubmit}>Create Character</button>
+                            <div className="form-group col-12">
+                                <label htmlFor="firstName">First Name</label>
+                                <input
+                                    type="text" 
+                                    className="form-control"
+                                    name="firstName" 
+                                    id="firstName" 
+                                    value={this.state.backstory} 
+                                    onChange={this.handleChange} />
+                            </div>
+                        
                         </form>
                     </div>
                     <div className="col-3"></div>  
