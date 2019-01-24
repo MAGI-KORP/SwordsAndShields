@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
-import axios from "axios"
-
+import axios from 'axios'
 // const io = require('socket.io-client')
 // const socket = io()
 class Arena extends Component {
@@ -10,7 +9,11 @@ class Arena extends Component {
         slot: 0,
         log:[],
         players: [],
+<<<<<<< HEAD
+        endpoint: ":443",
+=======
         endpoint: "https://swordsandsockets.herokuapp.com/",
+>>>>>>> ac0da9a8b0619f271e469840f943483ad52f87f1
         socket: false,
         health1: 15,
         health2: 15,
@@ -170,12 +173,9 @@ class Arena extends Component {
         
         const { endpoint } = this.state;
         const socket = socketIOClient(endpoint,{transports:['websocket','polling']});
-        socket.emit("newPlayer", this.state.self)
+        setTimeout(socket.emit("newPlayer", this.state.self),3000)
         this.setState({socket : socket})
         socket.on("response", data => {
-                if(!this.state.username){
-                    this.setState({username: data.playerName})
-                }
                 console.log(data.players)
                 this.setState({players: data.players})
                 var index = this.state.players.findIndex(function(element){
@@ -187,7 +187,7 @@ class Arena extends Component {
                 if(this.state.slot === 1) {
                     this.setState({one: this.state.self})
                 }
-                else if(this.state.slot === 2){
+                if(this.state.slot === 2){
                     this.setState({two: this.state.self})
                 }
                 this.render()
