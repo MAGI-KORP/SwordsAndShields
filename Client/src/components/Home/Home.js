@@ -32,8 +32,8 @@ class Home extends Component {
                     startDelay={14200}
                     showCursor={false}
             />
-          </Link>
-          <Link className="nav-link-creation" to='/registration'>
+          </Link><br></br>
+          <Link className="nav-link-creation" to='/user/login'>
             <Typed 
                     strings={[' [Login]']} 
                     typeSpeed={75}
