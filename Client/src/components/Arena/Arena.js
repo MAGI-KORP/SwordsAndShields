@@ -106,7 +106,7 @@ class Arena extends Component {
                             </h2>
                         </div>
                         
-                        <div style={(this.state.slot === 0) ? {display: "flex"} : {display: "none"}} className="row">
+                        <div style={(this.state.slot === 1) ? {display: "flex"} : {display: "none"}} className="row">
                             <div className="col-4">
                                 <button onClick={() => {this.makeMove("Player 1", "slash")}}>Slash</button>
                             </div>
@@ -134,7 +134,7 @@ class Arena extends Component {
                             </h2>
                         </div>
                         
-                        <div style={(this.state.slot === 1) ? {display: "flex"} : {display: "none"}} className="row">
+                        <div style={(this.state.slot === 2) ? {display: "flex"} : {display: "none"}} className="row">
                             <div className="col-4">
                                 <button onClick={() => {this.makeMove("Player 2", "slash")}}>Slash</button>
                             </div>
