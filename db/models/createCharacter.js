@@ -10,10 +10,21 @@ const characterSchema = new Schema({
     unique: true, 
     required: true
    },
+   username: {
+     type: String,
+     unique: false,
+     required: true
+   },
   surName: { 
     type: String, 
     unique: false, 
     required: false 
+  },
+  hitpoints: {
+    type: String,
+    unique: false,
+    required: true,
+    default: 50
   },
   strength: { 
     type: Number, 
@@ -29,6 +40,11 @@ const characterSchema = new Schema({
     type: Number, 
     unique: false, 
     required: false 
+  },
+  backstory: {
+    type: String,
+    unique: false,
+    required: true
   }
 })
 

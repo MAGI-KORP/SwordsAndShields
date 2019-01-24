@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
+<<<<<<< HEAD
 import axios from "axios"
 
 const port = 4001
 if(process.env.PORT2) {
     port = process.env.PORT2
 }
+=======
+// const io = require('socket.io-client')
+// const socket = io()
+>>>>>>> ac0da9a8b0619f271e469840f943483ad52f87f1
 class Arena extends Component {
     state = {
         username: "",
         slot: 0,
         log:[],
         players: [],
+<<<<<<< HEAD
         endpoint: ":443",
+=======
+        endpoint: "https://swordsandsockets.herokuapp.com/",
+>>>>>>> ac0da9a8b0619f271e469840f943483ad52f87f1
         socket: false,
         health1: 15,
         health2: 15,
