@@ -27,17 +27,9 @@ class Home extends Component {
           </h2>
           <Link className="nav-link-creation" to='/registration'>
             <Typed 
-                    strings={['[Create An Account]']} 
+                    strings={['[Create An Account] ']} 
                     typeSpeed={75}
                     startDelay={14200}
-                    showCursor={false}
-            />
-          </Link>
-          <Link className="nav-link-creation" to='/registration'>
-            <Typed 
-                    strings={['[Login]']} 
-                    typeSpeed={75}
-                    startDelay={15000}
                     showCursor={false}
             />
           </Link>
