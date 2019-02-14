@@ -11,8 +11,8 @@ class Arena extends Component {
         players: [],
         endpoint: "https://swordsandsockets.herokuapp.com/",
         socket: false,
-        health1: 15,
-        health2: 15,
+        health1: 100,
+        health2: 100,
         self: {
             firstName: "Colin the Cat-Lord",
             level: "5",
@@ -218,7 +218,7 @@ class Arena extends Component {
             else{
                 this.setState({one: data[0], two: data[1]})
             }
-            this.setState({health1: 15, health2: 15})
+            this.setState({health1: 100, health2: 100})
             this.render()
         })
 
