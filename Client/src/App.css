@@ -40,6 +40,11 @@ html{
   color: #61dafb;
 }
 
+input {
+  background-color: black;
+  border-bottom: #61dafb;
+}
+
 button {
   background: black;
   color: white;
@@ -125,6 +130,8 @@ button:hover {
 #log{
   height: 50vh
 }
+
+
 
 #playerList{
   height: 20vh

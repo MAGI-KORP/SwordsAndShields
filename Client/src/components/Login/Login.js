@@ -62,7 +62,7 @@ class Login extends Component {
                                     <label htmlFor="username">Username:</label>
                                     <input
                                         type="text" 
-                                        className="form-control"
+                                        className="form-control username-form"
                                         name="username" 
                                         id="username" 
                                         value={this.state.username} 
