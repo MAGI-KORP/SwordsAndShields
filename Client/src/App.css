@@ -129,7 +129,15 @@ button:hover {
   background-color: black;
 }
 
-.form-group {
+#surname {
+  width: 100%;
+}
+
+#firstName {
+  width: 100%;
+}
+
+.login-input {
   display: flex;
   justify-content: center;
 }
@@ -140,6 +148,10 @@ label {
 
 .formLabel {
   padding-right:1vw
+}
+
+.character-name {
+  color: red;
 }
 
 .form-row{

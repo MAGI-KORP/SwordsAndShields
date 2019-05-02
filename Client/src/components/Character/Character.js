@@ -115,7 +115,7 @@ class Character extends Component {
                                     <label htmlFor="firstName">First Name</label>
                                     <input
                                         type="text" 
-                                        className="form-control"
+                                        className="form-control character-name"
                                         name="firstName" 
                                         id="firstName" 
                                         value={this.state.firstName} 
@@ -125,7 +125,7 @@ class Character extends Component {
                                     <label htmlFor="surname">Surname</label>
                                     <input 
                                         type="text" 
-                                        className="form-control"
+                                        className="form-control character-name"
                                         name="surname" 
                                         id="surname"  
                                         value={this.state.surname} 
@@ -139,7 +139,7 @@ class Character extends Component {
                                 <div className="col-4">
                                     <h2>Strength</h2>
                                     <div className="row">
-                                        <div className=" form-group col-4 mx-auto">
+                                        <div className="form-group col-4 mx-auto">
                                             <label htmlFor="strength"></label>
                                             <button type="button" className="btn btn-secondary" id="strength" onClick={this.statIncrease}>+</button>
                                             <div>
@@ -153,7 +153,7 @@ class Character extends Component {
                                 <div className="col-4">
                                     <h2>Defense</h2>
                                     <div className="row">
-                                        <div className=" form-group col-4 mx-auto">
+                                        <div className="form-group col-4 mx-auto">
                                         <label htmlFor="defense"></label>
                                         <button type="button" className="btn btn-secondary" id="defense" onClick={this.statIncrease}>+</button>
                                         <div>

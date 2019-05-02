@@ -58,7 +58,7 @@ class Login extends Component {
                         <form>
                         <h2 className="main logInTitle">Login to Your Account</h2>
                             <div className="form-row">                      
-                                <div className="form-group col-12">
+                                <div className="form-group col-12 login-input">
                                     <label htmlFor="username">Username:</label>
                                     <input
                                         type="text" 
@@ -68,7 +68,7 @@ class Login extends Component {
                                         value={this.state.username} 
                                         onChange={this.handleChange} />
                                 </div>
-                                <div className="form-group col-12">
+                                <div className="form-group col-12 login-input">
                                     <label htmlFor="password">Password:</label>
                                     <input 
                                         type="password" 
