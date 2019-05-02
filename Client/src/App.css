@@ -8,7 +8,7 @@ html{
   min-height:100vh;
   background-color: black;
   color:white;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(5px + 1.5vmin);
 }
 
 /* .App-logo {
@@ -80,6 +80,15 @@ button:hover {
 
 }
 
+.stat-remain {
+  margin-top: 2em;
+}
+
+h2 {
+  font-size: 1em;
+  margin-bottom: 2em;
+}
+
 #characterValue {
   text-align:center;
   font-size: calc(10px + 2vmin);
@@ -100,7 +109,8 @@ button:hover {
 }
 
 .col-4 {
-  text-align:center
+  text-align: center;
+  
 }
 
 .combatDisplayHeader{
@@ -150,9 +160,6 @@ label {
   padding-right:1vw
 }
 
-.character-name {
-  color: red;
-}
 
 .form-row{
   width:100%;
