@@ -8,7 +8,7 @@ html{
   min-height:100vh;
   background-color: black;
   color:white;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(5px + 1.5vmin);
 }
 
 /* .App-logo {
@@ -36,8 +36,24 @@ html{
   height:10vh
 }
 
+.logInTitle {
+  margin-bottom: 5%;
+}
+
 .App-link {
   color: #61dafb;
+}
+
+input[type=text], input[type=password] {
+  background-color: black;
+  border: none;
+  border-bottom: 2px solid #61dafb;
+  width: 50%;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: black;
+  color: white;
 }
 
 button {
@@ -64,6 +80,15 @@ button:hover {
 
 }
 
+.stat-remain {
+  margin-top: 2em;
+}
+
+h2 {
+  font-size: 1em;
+  margin-bottom: 2em;
+}
+
 #characterValue {
   text-align:center;
   font-size: calc(10px + 2vmin);
@@ -84,7 +109,8 @@ button:hover {
 }
 
 .col-4 {
-  text-align:center
+  text-align: center;
+  
 }
 
 .combatDisplayHeader{
@@ -113,9 +139,27 @@ button:hover {
   background-color: black;
 }
 
+#surname {
+  width: 100%;
+}
+
+#firstName {
+  width: 100%;
+}
+
+.login-input {
+  display: flex;
+  justify-content: center;
+}
+
+label {
+  margin-right: 2em;
+}
+
 .formLabel {
   padding-right:1vw
 }
+
 
 .form-row{
   width:100%;
@@ -125,6 +169,8 @@ button:hover {
 #log{
   height: 50vh
 }
+
+
 
 #playerList{
   height: 20vh
@@ -138,7 +184,6 @@ button:hover {
 .main {
   margin-top: 1vh;
   font-size: calc(10px + 2vmin);
-
 }
 
 .message {

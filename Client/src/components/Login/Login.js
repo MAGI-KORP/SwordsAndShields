@@ -56,19 +56,19 @@ class Login extends Component {
                 <div className="col-3"></div>            
                     <div className="col-6">
                         <form>
-                        <h2 className="main">Login to Your Account</h2>
+                        <h2 className="main logInTitle">Login to Your Account</h2>
                             <div className="form-row">                      
-                                <div className="form-group col-12">
+                                <div className="form-group col-12 login-input">
                                     <label htmlFor="username">Username:</label>
                                     <input
                                         type="text" 
-                                        className="form-control"
+                                        className="form-control username-form"
                                         name="username" 
                                         id="username" 
                                         value={this.state.username} 
                                         onChange={this.handleChange} />
                                 </div>
-                                <div className="form-group col-12">
+                                <div className="form-group col-12 login-input">
                                     <label htmlFor="password">Password:</label>
                                     <input 
                                         type="password" 

@@ -115,7 +115,7 @@ class Character extends Component {
                                     <label htmlFor="firstName">First Name</label>
                                     <input
                                         type="text" 
-                                        className="form-control"
+                                        className="form-control character-name"
                                         name="firstName" 
                                         id="firstName" 
                                         value={this.state.firstName} 
@@ -125,22 +125,21 @@ class Character extends Component {
                                     <label htmlFor="surname">Surname</label>
                                     <input 
                                         type="text" 
-                                        className="form-control"
+                                        className="form-control character-name"
                                         name="surname" 
                                         id="surname"  
                                         value={this.state.surname} 
                                         onChange={this.handleChange} />
                                 </div>
 
-                                <div className="col-12">
+                                <div className="col-12 stat-remain">
                                     <h2>Stat Points Remaining: {this.state.statsRemaining}</h2>
                                 </div>
 
-                                <div className="col-4">
+                                <div className="col-4 mx-auto">
                                     <h2>Strength</h2>
                                     <div className="row">
-                                        <div className=" form-group col-4 mx-auto">
-                                            <label htmlFor="strength"></label>
+                                        <div className="form-group col-4 mx-auto">
                                             <button type="button" className="btn btn-secondary" id="strength" onClick={this.statIncrease}>+</button>
                                             <div>
                                                 {this.state.strength}
@@ -150,11 +149,10 @@ class Character extends Component {
                                     </div>
                                 </div>
 
-                                <div className="col-4">
+                                <div className="col-4 mx-auto">
                                     <h2>Defense</h2>
                                     <div className="row">
-                                        <div className=" form-group col-4 mx-auto">
-                                        <label htmlFor="defense"></label>
+                                        <div className="form-group col-4 mx-auto">
                                         <button type="button" className="btn btn-secondary" id="defense" onClick={this.statIncrease}>+</button>
                                         <div>
                                             {this.state.defense}
@@ -163,11 +161,10 @@ class Character extends Component {
                                     </div>
                                 </div>
                                 </div>
-                                <div className="col-4">
+                                <div className="col-4 mx-auto">
                                     <h2>Evasion</h2>
                                     <div className="row">
                                         <div className="form-group col-4 mx-auto">
-                                            <label htmlFor="evasion"></label>
                                             <button type="button" className="btn btn-secondary" id="evasion" onClick={this.statIncrease}>+</button>
                                             <div>
                                                 {this.state.evasion}
