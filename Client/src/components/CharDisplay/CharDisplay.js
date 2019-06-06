@@ -18,12 +18,14 @@ class CharDisplay extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.componentDidMount = this.componentDidMount.bind(this)
+        this.handleStats = this.handleStats.bind(this)
     }
 
     componentDidMount() {
-      console.log("componenet mounted")
-      axios.get("/api/please")
-      .then(response => {
+        this.handleStats()
+        console.log("component mounted")
+        axios.get("/api/please")
+        .then(response => {
         this.setState({
             firstName: response.data.firstName,
             strength: response.data.strength,
@@ -31,7 +33,7 @@ class CharDisplay extends Component {
             evasion: response.data.evasion,
             backstory: response.data.backstory
             })
-      })
+        })
     }
     
     
@@ -39,6 +41,14 @@ class CharDisplay extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
+    }
+
+    handleStats() {
+       if (this.state.firstName === "") {
+         this.setState({
+             firstName: "No Character Created"
+         })
+       }
     }
 
 

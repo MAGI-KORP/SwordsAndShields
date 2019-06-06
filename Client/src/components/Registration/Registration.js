@@ -56,8 +56,9 @@ class Registration extends Component {
                     <div className="col-6">
                         <form>
                         <h2 className="main">Register a Brand New Account:</h2>
+                        <p>(You will be required to log in after registration)</p>
                             <div className="form-row">                      
-                                <div className="form-group col-12">
+                                <div className="form-group col-12 login-input">
                                     <label htmlFor="username">Username:</label>
                                     <input
                                         type="text" 
@@ -67,7 +68,7 @@ class Registration extends Component {
                                         value={this.state.username} 
                                         onChange={this.handleChange} />
                                 </div>
-                                <div className="form-group col-12">
+                                <div className="form-group col-12 login-input">
                                     <label htmlFor="password">Password:</label>
                                     <input 
                                         type="password" 
