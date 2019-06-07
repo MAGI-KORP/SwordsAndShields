@@ -59,6 +59,9 @@ class CharDisplay extends Component {
                   <div>
                       <img className="classImg" src={ logo }></img>
                   </div>
+                  <div>
+                      <p>Class: Warrior</p>
+                  </div>
                   <p>Name: { this.state.firstName }</p>
                   
                   <p>STR: { this.state.strength } </p>
