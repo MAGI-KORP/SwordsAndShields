@@ -113,6 +113,10 @@ h2 {
   
 }
 
+.classImg {
+  height: 5em;
+}
+
 .combatDisplayHeader{
   text-align:center;
   border-bottom: white dotted 3px;

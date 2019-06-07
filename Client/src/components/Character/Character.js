@@ -110,7 +110,7 @@ class Character extends Component {
                     <div className="col-6">
                         <form>
                         <h2 className="main">Create A Character</h2>
-                            <div className="form-row">                      
+                            <div className="form-row">                    
                                 <div className="form-group col-6">
                                     <label htmlFor="firstName">First Name</label>
                                     <input
