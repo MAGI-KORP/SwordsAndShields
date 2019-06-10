@@ -47,7 +47,10 @@ class CharDisplay extends Component {
     handleStats() {
        if (this.state.firstName === "") {
          this.setState({
-             firstName: "No Character Created"
+             firstName: "No Character Created",
+             strength: "",
+             defense: "",
+             evasion: ""
          })
        }
     }
