@@ -12,6 +12,7 @@ class CharDisplay extends Component {
             statsRemaining: 5,
             firstName: "",
             surname: "",
+            class: "",
             strength: 10,
             defense: 10,
             evasion: 10,
@@ -29,6 +30,7 @@ class CharDisplay extends Component {
         .then(response => {
         this.setState({
             firstName: response.data.firstName,
+            class: response.data.class,
             strength: response.data.strength,
             defense: response.data.defense,
             evasion: response.data.evasion,
@@ -48,6 +50,7 @@ class CharDisplay extends Component {
        if (this.state.firstName === "") {
          this.setState({
              firstName: "No Character Created",
+             class: "",
              strength: "",
              defense: "",
              evasion: ""
@@ -63,7 +66,7 @@ class CharDisplay extends Component {
                       <img className="classImg" src={ logo }></img>
                   </div>
                   <div>
-                      <p>Class: Warrior</p>
+                      <p>Class: { this.state.class }</p>
                   </div>
                   <p>Name: { this.state.firstName }</p>
                   

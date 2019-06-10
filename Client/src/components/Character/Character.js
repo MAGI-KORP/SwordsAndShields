@@ -131,52 +131,53 @@ class Character extends Component {
                                         value={this.state.surname} 
                                         onChange={this.handleChange} />
                                 </div>
+                            </div>
 
                                 <div className="col-12 stat-remain">
                                     <h2>Stat Points Remaining: {this.state.statsRemaining}</h2>
                                 </div>
 
-                                <div className="col-4 mx-auto">
-                                    <h2>Strength</h2>
-                                    <div className="row">
-                                        <div className="form-group col-4 mx-auto">
-                                            <button type="button" className="btn btn-secondary" id="strength" onClick={this.statIncrease}>+</button>
-                                            <div>
-                                                {this.state.strength}
-                                            </div>
-                                            <button type="button" className="btn btn-secondary" id="strength" onClick={this.statDecrease}>-</button>
+                                <div className="form-row mx-auto">
+                                    <p className="stat-type">Strength:</p>
+                                    <div className="">
+                                        <div className="col-4 stat-change">
+                                            <div className="stat-adjust" id="strength" onClick={this.statDecrease}>-</div>
+                                                <div className="stat">
+                                                    {this.state.strength}
+                                                </div>
+                                            <div className="stat-adjust" id="strength" onClick={this.statIncrease}>+</div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="col-4 mx-auto">
-                                    <h2>Defense</h2>
-                                    <div className="row">
-                                        <div className="form-group col-4 mx-auto">
-                                        <button type="button" className="btn btn-secondary" id="defense" onClick={this.statIncrease}>+</button>
-                                        <div>
-                                            {this.state.defense}
-                                        </div>
-                                        <button type="button" className="btn btn-secondary" id="defense" onClick={this.statDecrease}>-</button>
+                                <div className="form-row mx-auto">
+                                    <p className="stat-type">Defense:</p>
+                                    <div className="">
+                                        <div className="col-4 stat-change">
+                                            <div className="stat-adjust" id="defense" onClick={this.statDecrease}>-</div>
+                                                <div className="stat">
+                                                    {this.state.defense}
+                                                </div>
+                                        <div className="stat-adjust" id="defense" onClick={this.statIncrease}>+</div>
                                     </div>
                                 </div>
                                 </div>
-                                <div className="col-4 mx-auto">
-                                    <h2>Evasion</h2>
-                                    <div className="row">
-                                        <div className="form-group col-4 mx-auto">
-                                            <button type="button" className="btn btn-secondary" id="evasion" onClick={this.statIncrease}>+</button>
-                                            <div>
+                                <div className="form-row mx-auto">
+                                    <p className="stat-type">Evasion:</p>
+                                    <div className="">
+                                        <div className="col-4 stat-change">
+                                            <div className="stat-adjust" id="evasion" onClick={this.statDecrease}>-</div>
+                                            <div className="stat">
                                                 {this.state.evasion}
                                             </div>
-                                            <button type="button" className="btn btn-secondary" id="evasion" onClick={this.statDecrease}>-</button>
+                                            <div className="stat-adjust" id="evasion" onClick={this.statIncrease}>+</div>
                                         </div>
                                     </div>
 
 
                                 </div>
                                 
-                            </div>
+                            
                             
                             <div className="form-group col-12 justify-content-center">
                                 <label htmlFor="backstory">Backstory</label>

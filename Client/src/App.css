@@ -123,6 +123,25 @@ h2 {
   padding-bottom: 1vh
 }
 
+.stat-change {
+  display: flex
+}
+
+.stat-type {
+  width: 10%;
+}
+
+.stat {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.stat-adjust {
+  font-weight: bolder;
+  cursor: pointer;
+  color: #61dafb;
+}
+
 .combatantDisplay{
   height:55vh;
   text-align:left;
