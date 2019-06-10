@@ -9,11 +9,9 @@ CREATE TABLE characters (
     attack INT,
     defense INT,
     hp INT,
-    wins        INT     not null
-                        default 0,
-    losses      INT     not null
-                        default 0,
-    taunt       VARCHAR(500),
+    wins INT not null default 0,
+    losses INT not null default 0,
+    taunt VARCHAR(500),
 
     PRIMARY KEY(id)
 );
