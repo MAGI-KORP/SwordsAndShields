@@ -177,7 +177,7 @@ class Character extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <select className="class-select col-md-3 col-6">
+                                <select className="class-select col-md-3 col-6 mx-auto">
                                     <option value="Warrior">Warrior</option>
                                     <option value="Rogue">Rogue</option>
                                     <option vlaue="Wizard">Wizard</option>
