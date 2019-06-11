@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import lilPyramid from '../../images/lilPyramid.png'
 import { Link } from 'react-router-dom'
 
 class Footer extends Component {
@@ -8,7 +7,7 @@ class Footer extends Component {
                 <div className="row">
                     <div className="col-12">
                         <Link to="/">
-                            <img style={{display: window.location.href === "http://localhost:3000/" ? "none" : ""}}className="lilPyramid" src={lilPyramid} alt="lilPyramid"></img>
+                            <img style={{display: window.location.href === "http://localhost:3000/" ? "none" : ""}}className="lilPyramid" src="images/lilPyramid.png" alt="lilPyramid"></img>
                         </Link>                       
                     </div>                   
                     

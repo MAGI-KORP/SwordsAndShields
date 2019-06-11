@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Pyramid from '../../images/pyramid.png'
+// import Pyramid from '../../images/pyramid.png'
 import Typed from 'react-typed';
 import { Link } from 'react-router-dom'
 
@@ -16,7 +16,7 @@ class Home extends Component {
                     showCursor={true} 
                 />
                 </h1>
-          <img src={Pyramid} className = 'Pyramid' alt = 'pyramid'></img>
+          <img src="images/Pyramid.png" className = 'Pyramid' alt = 'pyramid'></img>
           <h2 className = "message">
                 <Typed 
                     strings={["Welcome Traveler!^1000 <br> The time has come for you to begin your journey..."]} 

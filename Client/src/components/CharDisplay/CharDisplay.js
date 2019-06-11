@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Typed from 'react-typed';
 import { Link, Redirect } from "react-router-dom"
 import axios from "axios"
-import logo from "../../images/battle-gear.png"
+import Rogue from "../../images/Rogue.png"
 
 class CharDisplay extends Component {
     constructor(){
@@ -59,11 +59,14 @@ class CharDisplay extends Component {
     }
 
 
+
+
+
     render() {
             return(
                 <div>
                   <div>
-                      <img className="classImg" src={ logo }></img>
+                      <img className="classImg"></img>
                   </div>
                   <div>
                       <p>Class: { this.state.class }</p>
