@@ -178,13 +178,13 @@ class Character extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <select name="value" value={this.state.value} onChange={this.handleChange} className="class-select col-md-3 col-6 mx-auto">
-                                    <option value="Warrior">Warrior</option>
-                                    <option value="Rogue">Rogue</option>
-                                    <option vlaue="Wizard">Wizard</option>
-                                </select>
-                                <div>
-                                    <img src={`images/${this.state.value}.png`}></img>
+                                <div className="flexDirection">
+                                    <select name="value" value={this.state.value} onChange={this.handleChange} className="class-select col-md-3 col-6 mx-auto">
+                                        <option value="Warrior">Warrior</option>
+                                        <option value="Rogue">Rogue</option>
+                                        <option vlaue="Wizard">Wizard</option>
+                                    </select>
+                                    <img  className="selectedClass mx-auto col-6" src={`images/${this.state.value}.png`}></img>
                                 </div>
                             </div>
                             

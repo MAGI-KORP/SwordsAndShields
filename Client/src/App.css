@@ -113,6 +113,10 @@ h2 {
   
 }
 
+.selectedClass {
+  max-height: 10em;
+}
+
 .classImg {
   height: 5em;
 }
@@ -121,10 +125,18 @@ h2 {
   display: flex;
 }
 
+.flexDirection {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+}
+
 
 .class-select {
   height: 2em;
   margin-top: 2em;
+  margin-bottom: 1em;
+  width: 10rem;
 }
 
 .combatDisplayHeader{
