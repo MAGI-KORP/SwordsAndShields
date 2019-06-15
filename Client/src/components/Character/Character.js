@@ -7,6 +7,7 @@ class Character extends Component {
     constructor(){
         super()
         this.state = {
+            value: "Warrior",
             redirectTo: null,
             statsRemaining: 5,
             firstName: "",
@@ -177,11 +178,14 @@ class Character extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                <select className="class-select col-md-3 col-6 mx-auto">
+                                <select name="value" value={this.state.value} onChange={this.handleChange} className="class-select col-md-3 col-6 mx-auto">
                                     <option value="Warrior">Warrior</option>
                                     <option value="Rogue">Rogue</option>
                                     <option vlaue="Wizard">Wizard</option>
                                 </select>
+                                <div>
+                                    <img src={`images/${this.state.value}.png`}></img>
+                                </div>
                             </div>
                             
                             

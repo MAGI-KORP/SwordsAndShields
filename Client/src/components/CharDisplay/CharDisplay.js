@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Typed from 'react-typed';
 import { Link, Redirect } from "react-router-dom"
 import axios from "axios"
-import Rogue from "../../images/Rogue.png"
 
 class CharDisplay extends Component {
     constructor(){
@@ -20,7 +19,6 @@ class CharDisplay extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.componentDidMount = this.componentDidMount.bind(this)
-        this.handleStats = this.handleStats.bind(this)
     }
 
     componentDidMount() {
@@ -28,14 +26,16 @@ class CharDisplay extends Component {
         console.log("component mounted")
         axios.get("/api/please")
         .then(response => {
-        this.setState({
-            firstName: response.data.firstName,
-            class: response.data.class,
-            strength: response.data.strength,
-            defense: response.data.defense,
-            evasion: response.data.evasion,
-            backstory: response.data.backstory
-            })
+            if(response.data) {
+                this.setState({
+                    firstName: response.data.firstName,
+                    class: response.data.class,
+                    strength: response.data.strength,
+                    defense: response.data.defense,
+                    evasion: response.data.evasion,
+                    backstory: response.data.backstory
+                    })
+            }
         })
     }
     
@@ -66,7 +66,7 @@ class CharDisplay extends Component {
             return(
                 <div>
                   <div>
-                      <img className="classImg"></img>
+                      {/* <img className="classImg"></img> */}
                   </div>
                   <div>
                       <p>Class: { this.state.class }</p>
