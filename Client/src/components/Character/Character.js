@@ -183,7 +183,7 @@ class Character extends Component {
                                         <option value="Rogue">Rogue</option>
                                         <option vlaue="Wizard">Wizard</option>
                                     </select>
-                                    <img  className="selectedClass mx-auto col-6" src={`images/${this.state.value}.png`}></img>
+                                    <img  className="selected-class mx-auto col-6" src={`images/${this.state.value}.png`}></img>
                                 </div>
                             </div>
                             

@@ -113,8 +113,9 @@ h2 {
   
 }
 
-.selectedClass {
+.selected-class {
   max-height: 10em;
+  margin-bottom: 1em;
 }
 
 .classImg {

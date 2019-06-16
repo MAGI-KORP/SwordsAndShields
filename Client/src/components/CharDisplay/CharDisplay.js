@@ -67,7 +67,7 @@ class CharDisplay extends Component {
             return(
                 <div>
                   <div>
-                      <img src={`images/${this.state.class}.png`}></img>
+                      <img className="selected-class" src={`images/${this.state.class}.png`}></img>
                   </div>
                   <div>
                       <p>Class: { this.state.class }</p>
