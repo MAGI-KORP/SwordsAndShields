@@ -37,11 +37,13 @@ const CreateCharacter = require("../db/models/createCharacter")
 
 
 router.post("/", (req, res) => {
-  console.log(req)
+  console.log("______@_@_@_@_@_@_@_@_@_@_@_@@_@_@_@_@_@_@@_@_@_@_@_@_@_")
+  console.log(req.body.class)
   const newCharacter = new CreateCharacter({
     username: req.session.passport.user._id,
     firstName: req.body.firstName,
     surname: req.body.surname,
+    class: req.body.class,
     strength: req.body.strength,
     defense: req.body.defense,
     evasion: req.body.evasion,

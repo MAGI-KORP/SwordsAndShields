@@ -9,8 +9,13 @@ const characterSchema = new Schema({
     type: String, 
     unique: true, 
     required: true
-   },
-   username: {
+  },
+  class: {
+    type: String,
+    unique: false,
+    required: false
+  },
+  username: {
      type: String,
      unique: false,
      required: false
@@ -42,11 +47,6 @@ const characterSchema = new Schema({
     required: false 
   },
   backstory: {
-    type: String,
-    unique: false,
-    required: false
-  },
-  class: {
     type: String,
     unique: false,
     required: false

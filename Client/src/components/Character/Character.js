@@ -37,12 +37,11 @@ class Character extends Component {
         axios.post("/api/", {
             firstName: this.state.firstName,
             surname: this.state.surname,
+            class: this.state.value,
             strength: this.state.strength,
             defense: this.state.defense,
             evasion: this.state.evasion,
-            backstory: this.state.backstory,
-            wins: this.state.wins,
-            losses: this.state.losses
+            backstory: this.state.backstory
         }).then(response => {
             console.log("Sending new Character")
             if(response.status === 200) {

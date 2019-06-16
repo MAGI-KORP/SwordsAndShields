@@ -185,12 +185,19 @@ h2 {
   background-color: black;
 }
 
+#backstory {
+  background-color: black;
+  color: white;
+}
+
 #surname {
   width: 100%;
+  color: white;
 }
 
 #firstName {
   width: 100%;
+  color: white;
 }
 
 .login-input {

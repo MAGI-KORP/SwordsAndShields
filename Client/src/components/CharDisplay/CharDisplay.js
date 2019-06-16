@@ -8,10 +8,10 @@ class CharDisplay extends Component {
         super()
         this.state = {
             redirectTo: null,
+            class: "Class",
             statsRemaining: 5,
             firstName: "",
             surname: "",
-            class: "",
             strength: 10,
             defense: 10,
             evasion: 10,
@@ -26,6 +26,7 @@ class CharDisplay extends Component {
         console.log("component mounted")
         axios.get("/api/please")
         .then(response => {
+            // console.log(response.data)
             if(response.data) {
                 this.setState({
                     firstName: response.data.firstName,
@@ -66,7 +67,7 @@ class CharDisplay extends Component {
             return(
                 <div>
                   <div>
-                      {/* <img className="classImg"></img> */}
+                      <img src={`images/${this.state.class}.png`}></img>
                   </div>
                   <div>
                       <p>Class: { this.state.class }</p>
