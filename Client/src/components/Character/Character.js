@@ -15,9 +15,7 @@ class Character extends Component {
             strength: 10,
             defense: 10,
             evasion: 10,
-            backstory: "",
-            wins: 0,
-            losses: 0
+            backstory: ""
     
         }
         this.handleChange = this.handleChange.bind(this)
